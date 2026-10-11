@@ -55,7 +55,7 @@ draft: false
 | `applicationYear` | 是 | 保研申请年份 |
 | `undergraduateMajor` | 否 | 本科专业，用于卡片显示和搜索 |
 | `institutions` | 否 | 涉及院校的完整名称列表，用于卡片药丸标签和搜索 |
-| `summary` | 否 | 文章简介；卡片最多显示两行，文章页显示完整内容 |
+| `summary` | 否 | 文章简介；卡片显示一行，文章页显示完整内容 |
 | `cover` | 否 | 封面路径；省略时使用图片池 |
 | `sourceUrl` | 否 | 原始出处的完整 URL，目前用于记录来源 |
 | `publishedAt` | 否 | 本站首次发布时间，用于“最新收录”排序，卡片不显示日期 |
