@@ -5,6 +5,16 @@ applicationYear: 2025
 cover: "./cover.jpg"
 coverAlt: "2025-ccandtt-yt 经验贴封面"
 draft: false
+institutions:
+  - "清华大学"
+  - "厦门大学"
+  - "复旦大学"
+  - "东南大学"
+  - "华中科技大学"
+  - "电子科技大学"
+  - "电子科技大学（深圳研究院）"
+  - "四川大学"
+collectedAt: 2026-10-03T02:26:01+08:00
 ---
 
 # 末二低RK的保研之路

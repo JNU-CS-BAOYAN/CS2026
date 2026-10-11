@@ -5,6 +5,11 @@ applicationYear: 2025
 cover: "./cover.jpg"
 coverAlt: "2025-mkk-sc 经验贴封面"
 draft: false
+institutions:
+  - "厦门大学"
+  - "电子科技大学（深圳研究院）"
+  - "东南大学"
+collectedAt: 2026-10-03T02:26:01+08:00
 ---
 
 

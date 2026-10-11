@@ -4,5 +4,5 @@ interface Props {
 }
 const { date } = Astro.props;
 ---
-{date ? <time datetime={date.toISOString()}>{date.toLocaleDateString('zh-CN')}</time> : null}
+{date ? <time datetime={date.toISOString()}>{date.toLocaleDateString('zh-CN', { timeZone: 'Asia/Shanghai' })}</time> : null}
 

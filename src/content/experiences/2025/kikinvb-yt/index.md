@@ -5,6 +5,17 @@ applicationYear: 2025
 cover: "./cover.jpg"
 coverAlt: "2025-kikinvb-yt 经验贴封面"
 draft: false
+undergraduateMajor: "计算机科学与技术"
+institutions:
+  - "南京航空航天大学"
+  - "华东理工大学"
+  - "吉林大学"
+  - "深圳大学"
+  - "武汉大学"
+  - "华东师范大学"
+  - "东南大学"
+  - "重庆大学"
+collectedAt: 2026-10-03T02:26:01+08:00
 ---
 
 # zhaoli's 保研经验分享

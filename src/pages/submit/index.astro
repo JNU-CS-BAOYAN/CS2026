@@ -43,7 +43,7 @@ const markdownTemplate = readFileSync('public/templates/submission-template.md',
   <p role="status" aria-live="polite" data-template-status></p>
   <section class="prose" style="margin-top: 3rem;">
     <h2>通过邮箱投稿</h2>
-    <p>下载上方 Markdown 或 Word 模板并填写正文，将文章、封面和可公开附件一起发送到 <a href={`mailto:${SUBMISSION_EMAIL}`}>{SUBMISSION_EMAIL}</a>。请注明申请年份、希望显示的署名和附件的公开范围，YAML 文件头可由维护者补充。</p>
+    <p>下载上方 Markdown 或 Word 模板并填写正文，将文章、封面和可公开附件一起发送到 <a href={`mailto:${SUBMISSION_EMAIL}`}>{SUBMISSION_EMAIL}</a>。请注明申请年份、希望显示的署名、本科专业、正文涉及的院校及附件的公开范围，YAML 文件头可由维护者补充。</p>
     <h2>投稿前请确认</h2>
     <ol>
       <li>默认一位投稿者提交一篇完整经验贴，夏令营、预推免等经历可以在同一篇文章中分章节叙述。</li>
@@ -58,16 +58,22 @@ const markdownTemplate = readFileSync('public/templates/submission-template.md',
     <ol>
       <li>Fork <a href="https://github.com/JNU-CS-BAOYAN/CS2026">项目仓库</a>，在自己的仓库中创建分支。</li>
       <li>将文章保存为 <code>src/content/experiences/申请年份/文章ID/index.md</code>，例如 <code>src/content/experiences/2026/xiaojiang/index.md</code>。文章 ID 请使用不重复的英文或数字名称。</li>
-      <li>将封面和正文图片放在文章的同一文件夹，并在 Markdown 开头补充下面的 YAML。年份应与目录一致；有封面时再添加 <code>cover: "./cover.jpg"</code>。</li>
+      <li>将封面和正文图片放在文章的同一文件夹，并在 Markdown 开头补充下面的 YAML。年份应与目录一致；本科专业与院校按实际经历填写，不明确的信息可以省略。有封面时再添加 <code>cover: "./cover.jpg"</code>。</li>
       <li>提交修改后，向原仓库的 <code>main</code> 分支<a href="https://github.com/JNU-CS-BAOYAN/CS2026/compare">发起 PR</a>，说明文章年份、署名及附件的公开范围。</li>
     </ol>
     <pre><code>{`---
 title: "我的保研经历"
 author: "小江"
 applicationYear: 2026
+undergraduateMajor: "人工智能"
+institutions:
+  - "北京航空航天大学"
+  - "东南大学"
+collectedAt: 2026-10-11
 draft: false
 ---`}</code></pre>
     <p>投稿由维护者审核。合并到 main 后，网站会自动检查、构建并部署；提交 PR 或审核通过本身不会发布文章。没有封面时，维护者会从项目图片池中选择一张。</p>
+    <p><code>collectedAt</code> 是本站首次收录时间，由维护者发布前核对，不是申请年份或原文发表时间。本科专业和涉及院校会展示在卡片中，并用于搜索；院校建议填写完整名称，卡片会对常见院校使用简称。</p>
     <p>如希望出现在贡献者列表，可一并提供 GitHub 个人主页链接，头像由维护者补充。更正、撤下或其他问题可通过<a href={`mailto:${SUBMISSION_EMAIL}`}>邮箱</a>或 <a href="https://github.com/JNU-CS-BAOYAN/CS2026/issues">Issue</a> 联系。</p>
   </section>
 </SiteLayout>

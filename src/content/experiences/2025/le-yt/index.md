@@ -5,6 +5,14 @@ applicationYear: 2025
 cover: "./cover.jpg"
 coverAlt: "2025-le-yt 经验贴封面"
 draft: false
+institutions:
+  - "东南大学"
+  - "湖南大学"
+  - "南京理工大学"
+  - "华中科技大学"
+  - "南开大学"
+  - "南京大学"
+collectedAt: 2026-10-03T02:26:01+08:00
 ---
 
 

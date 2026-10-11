@@ -5,6 +5,15 @@ applicationYear: 2025
 cover: "./cover.jpg"
 coverAlt: "2025-pingpig-yt 经验贴封面"
 draft: false
+undergraduateMajor: "计算机科学与技术"
+institutions:
+  - "中山大学"
+  - "南京大学"
+  - "天津大学"
+  - "清华大学（深圳国际研究生院）"
+  - "哈尔滨工业大学（深圳）"
+  - "浙江大学"
+collectedAt: 2026-10-03T02:26:01+08:00
 ---
 
 # pingpig的预推免摆烂回顾

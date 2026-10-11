@@ -5,6 +5,18 @@ applicationYear: 2025
 cover: "./cover.jpg"
 coverAlt: "Eternity 经验贴默认封面"
 draft: false
+institutions:
+  - "东南大学"
+  - "湖南大学"
+  - "南京理工大学"
+  - "江南大学"
+  - "哈尔滨工业大学（威海）"
+  - "山东大学"
+  - "厦门大学"
+  - "华东师范大学"
+  - "四川大学"
+  - "中山大学"
+collectedAt: 2026-10-03T02:26:01+08:00
 ---
 
 # Eternity's Pre-Recommendation Experiences

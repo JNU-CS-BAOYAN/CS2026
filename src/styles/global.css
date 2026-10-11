@@ -25,7 +25,7 @@
   --shadow: 0 18px 45px rgba(93, 67, 49, 0.09);
   --radius: 18px;
   /* 正文排版：可直接调整这些变量。 */
-  --prose-width: 1000px;
+  --prose-width: 960px;
   --prose-font-size: 1.08rem;
   --prose-line-height: 1.78;
   --font-text: "Atkinson", Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
@@ -260,6 +260,14 @@ h3 { margin: 0; font-size: 1.1rem; }
 .card-body h3 a { color: var(--text); text-decoration: none; }
 .card-body h3 a:hover { color: var(--accent-deep); }
 .card-summary { margin: .65rem 0; color: var(--muted); font-size: .94rem; }
+.experience-metadata { display: grid; gap: .45rem; margin: .85rem 0 0; font-size: .9rem; line-height: 1.55; }
+.experience-metadata.compact { font-size: .82rem; }
+.experience-metadata > div { display: grid; grid-template-columns: 4em minmax(0, 1fr); gap: .6rem; }
+.experience-metadata dt { color: var(--muted); }
+.experience-metadata dd { display: flex; flex-wrap: wrap; gap: .2rem .65rem; margin: 0; }
+.experience-metadata a { text-decoration: none; }
+.experience-metadata .metadata-more { color: var(--muted); }
+.card-collected { margin: .65rem 0 0; color: var(--muted); font-size: .78rem; }
 .read-link { display: inline-block; margin-top: .4rem; font-size: .9rem; font-weight: 750; text-decoration: none; }
 .year-nav {
   display: flex;

@@ -5,6 +5,15 @@ applicationYear: 2025
 cover: "./cover.jpg"
 coverAlt: "2025-irokit-yt 经验贴封面"
 draft: false
+institutions:
+  - "北京航空航天大学"
+  - "北京邮电大学"
+  - "华东师范大学"
+  - "中国传媒大学"
+  - "南方科技大学"
+  - "北京师范大学"
+  - "华南理工大学"
+collectedAt: 2026-10-03T02:26:01+08:00
 ---
 
 ## 个人 bg

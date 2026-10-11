@@ -3,12 +3,12 @@ import { Image } from 'astro:assets';
 import { getCollection, getEntry } from 'astro:content';
 import ExperienceCard from '../components/ExperienceCard.astro';
 import SiteLayout from '../layouts/SiteLayout.astro';
-import { groupByYear, sortExperiences } from '../lib/experiences';
+import { groupByYear, sortByCollectedAt } from '../lib/experiences';
 import forewordArt from '../assets/foreword.svg';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const experiences = await getCollection('experiences', ({ data }) => !data.draft);
-const sorted = sortExperiences(experiences);
+const sorted = sortByCollectedAt(experiences);
 const pageSize = 6;
 const pageCount = Math.max(1, Math.ceil(sorted.length / pageSize));
 const years = [...groupByYear(experiences).keys()];
@@ -38,7 +38,7 @@ const forewordCover = foreword?.data.image ?? forewordArt;
   {foreword && (
     <section class="foreword" aria-labelledby="foreword-title">
       <div class="section-heading">
-        <h2 id="foreword-title"><span class="heading-icon" aria-hidden="true">✦</span> 最前面的话</h2>
+        <h2 id="foreword-title"><span class="heading-icon" aria-hidden="true">✦</span> 启航絮语</h2>
         <a href={`${base}/foreword/`}>阅读全文 →</a>
       </div>
       <a class="foreword-card" href={`${base}/foreword/`}>
@@ -59,7 +59,7 @@ const forewordCover = foreword?.data.image ?? forewordArt;
 
   <section class="section-block" aria-labelledby="latest-title">
     <div class="section-heading">
-      <h2 id="latest-title"><span class="heading-icon" aria-hidden="true">⌁</span> 最近更新</h2>
+      <h2 id="latest-title"><span class="heading-icon" aria-hidden="true">⌁</span> 最新收录</h2>
       <a href={`${base}/experiences/`}>全部文章 →</a>
     </div>
     {sorted.length ? (
@@ -72,7 +72,7 @@ const forewordCover = foreword?.data.image ?? forewordArt;
           ))}
         </div>
         {pageCount > 1 && (
-          <nav class="pagination home-pagination" data-home-pagination aria-label="最近更新分页">
+          <nav class="pagination home-pagination" data-home-pagination aria-label="最新收录分页">
             <span class="pagination-label">共 {sorted.length} 篇</span>
             <div class="pagination-links">
               {Array.from({ length: pageCount }, (_, index) => index + 1).map((page) => (

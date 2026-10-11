@@ -5,6 +5,11 @@ applicationYear: 2025
 cover: "./cover.jpg"
 coverAlt: "2025-feather1023-yt 经验贴封面"
 draft: false
+institutions:
+  - "浙江大学"
+  - "东南大学"
+  - "中国科学技术大学"
+collectedAt: 2026-10-03T02:26:01+08:00
 ---
 
 # “佛系”保研经验分享

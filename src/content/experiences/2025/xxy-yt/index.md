@@ -5,6 +5,12 @@ applicationYear: 2025
 cover: "./cover.jpg"
 coverAlt: "2025-xxy-yt 经验贴封面"
 draft: false
+institutions:
+  - "南京理工大学"
+  - "湖南大学"
+  - "大连理工大学"
+  - "北京邮电大学"
+collectedAt: 2026-10-03T02:26:01+08:00
 ---
 
 # 一点儿预推免保研经验分享₍˄·͈༝·͈˄*₎◞ ̑̑

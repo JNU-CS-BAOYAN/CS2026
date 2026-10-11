@@ -5,6 +5,13 @@ applicationYear: 2025
 cover: "./cover.jpg"
 coverAlt: "2025-lulu-yt 经验贴封面"
 draft: false
+institutions:
+  - "中南大学"
+  - "天津大学"
+  - "同济大学"
+  - "南京大学"
+  - "浙江大学"
+collectedAt: 2026-10-03T02:26:01+08:00
 ---
 # Lulu's YuTuiMian Experiences
 

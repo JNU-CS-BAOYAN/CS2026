@@ -5,6 +5,14 @@ applicationYear: 2025
 cover: "./cover.jpg"
 coverAlt: "2025-vegetable-yt 经验贴封面"
 draft: false
+institutions:
+  - "东北大学"
+  - "国防科技大学"
+  - "大连理工大学"
+  - "天津大学"
+  - "中山大学"
+  - "华南理工大学"
+collectedAt: 2026-10-03T02:26:01+08:00
 ---
 
 # 保研总结

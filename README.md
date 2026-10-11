@@ -25,18 +25,26 @@ npm run preview
 
 ## 内容结构
 
-经验文章放在 `src/content/experiences/<申请年份>/<stable-id>/index.md`，同一目录可放封面、正文图片和经过审核的附件。新文章至少需要：
+经验文章放在 `src/content/experiences/<申请年份>/<stable-id>/index.md`，同一目录可放封面、正文图片和经过审核的附件。发布时可使用以下文件头：
 
 ```yaml
 ---
 title: "文章标题"
 author: "匿名"
 applicationYear: 2026
+# 可选：按实际经历填写，空缺时不显示
+undergraduateMajor: "人工智能"
+institutions:
+  - "北京航空航天大学"
+  - "东南大学"
+collectedAt: 2026-10-11
 draft: false
 ---
 ```
 
-正文不要求投稿者填写 YAML；维护者在发布前补充元数据。文章不会按学校、夏令营或预推免拆分栏目，这些信息保留在正文中。
+邮箱投稿不要求填写 YAML；维护者在发布前补充元数据。`undergraduateMajor` 为本科专业，`institutions` 为原文涉及的申请院校列表，两者用于卡片显示和搜索，不作为一级栏目。院校填写完整名称，常见简称在 `src/lib/institutions.ts` 维护。不要从申请方向、比赛名称或排名推断本科专业。
+
+`collectedAt` 是本站首次收录时间，发布前由维护者确认；首页“最新收录”按它倒序排列，与申请年份、原文发表时间 `publishedAt`、更新日期 `updatedAt` 分开。历史文章按首次进入 Git 的记录回填；未填写的文章排在首页末尾，同一收录时间按原有年份、发表时间和稳定 ID 排序。经验列表与年份页仍按申请年份、发表时间组织。
 
 首页说明、流程、资料和关于页面位于 `src/content/pages/`。“最前面的话”以首页横向卡片展示，点击后进入独立文章页；经验列表和年份列表均提供页码导航。投稿模板位于：
 

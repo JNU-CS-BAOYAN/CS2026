@@ -5,6 +5,10 @@ applicationYear: 2025
 cover: "./cover.jpg"
 coverAlt: "2025-klein-yt 经验贴封面"
 draft: false
+institutions:
+  - "东南大学"
+  - "中山大学"
+collectedAt: 2026-10-03T02:26:01+08:00
 ---
 
 # Klein 的预推免经验帖

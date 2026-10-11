@@ -5,6 +5,17 @@ applicationYear: 2025
 cover: "./cover.jpg"
 coverAlt: "2025-klein-sc 经验贴封面"
 draft: false
+institutions:
+  - "中山大学"
+  - "山东大学"
+  - "浙江大学"
+  - "南京航空航天大学"
+  - "厦门大学"
+  - "南开大学"
+  - "武汉大学"
+  - "北京航空航天大学"
+  - "北京师范大学"
+collectedAt: 2026-10-03T02:26:01+08:00
 ---
 
 # Klein 的保研经验帖

@@ -1,0 +1,30 @@
+---
+import { institutionDisplayName } from '../lib/institutions';
+import { sitePath } from '../lib/experiences';
+
+interface Props {
+  undergraduateMajor?: string;
+  institutions: string[];
+  compact?: boolean;
+  articlePath?: string;
+}
+const { undergraduateMajor, institutions, compact = false, articlePath } = Astro.props;
+const visible = compact ? institutions.slice(0, 3) : institutions;
+const searchPath = (query: string) => `${sitePath('/search/')}?q=${encodeURIComponent(query)}`;
+---
+{(undergraduateMajor || institutions.length > 0) && (
+  <dl class:list={['experience-metadata', { compact }]}>
+    {undergraduateMajor && <div><dt>本科专业</dt><dd><a href={searchPath(undergraduateMajor)}>{undergraduateMajor}</a></dd></div>}
+    {institutions.length > 0 && (
+      <div>
+        <dt>涉及院校</dt>
+        <dd>
+          {visible.map((name) => <a href={searchPath(name)} title={name}>{institutionDisplayName(name)}</a>)}
+          {compact && institutions.length > visible.length && articlePath && (
+            <a class="metadata-more" href={articlePath} title={institutions.slice(visible.length).join('、')} aria-label={`查看本文全部 ${institutions.length} 所院校`}>另 {institutions.length - visible.length} 所</a>
+          )}
+        </dd>
+      </div>
+    )}
+  </dl>
+)}

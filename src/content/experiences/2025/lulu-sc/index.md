@@ -5,6 +5,14 @@ applicationYear: 2025
 cover: "./cover.jpg"
 coverAlt: "2025-lulu-sc 经验贴封面"
 draft: false
+institutions:
+  - "同济大学"
+  - "上海交通大学"
+  - "复旦大学"
+  - "中国科学技术大学"
+  - "华东师范大学"
+  - "东南大学"
+collectedAt: 2026-10-03T02:26:01+08:00
 ---
 # Lu's SummerCamp Experiences
 

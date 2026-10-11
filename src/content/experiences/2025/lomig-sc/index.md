@@ -5,6 +5,13 @@ applicationYear: 2025
 cover: "./cover.png"
 coverAlt: "2025-lomig-sc 经验贴封面"
 draft: false
+institutions:
+  - "南京航空航天大学"
+  - "华东理工大学"
+  - "浙江大学"
+  - "复旦大学"
+  - "上海交通大学"
+collectedAt: 2026-10-03T02:26:01+08:00
 ---
 
 # Lomig's SummerCamp Experiences

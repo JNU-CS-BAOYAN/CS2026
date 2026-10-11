@@ -5,6 +5,20 @@ applicationYear: 2025
 cover: "./cover.jpg"
 coverAlt: "2025-leo-sc 经验贴封面"
 draft: false
+institutions:
+  - "上海交通大学"
+  - "浙江大学"
+  - "华东师范大学"
+  - "同济大学"
+  - "复旦大学"
+  - "山东大学"
+  - "南京大学"
+  - "吉林大学"
+  - "中国科学技术大学"
+  - "中山大学"
+  - "西北工业大学"
+  - "南京航空航天大学"
+collectedAt: 2026-10-03T02:26:01+08:00
 ---
 
 # Leo's SummerCamp Experiences
