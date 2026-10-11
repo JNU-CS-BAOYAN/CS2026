@@ -22,7 +22,7 @@ image: "./foreword-cover.jpg"
 
 欢迎分享保研经历，也欢迎补充资料或更正已有内容。我们更鼓励通过 [项目仓库](https://github.com/JNU-CS-BAOYAN/CS2026) 提交 PR，让每次贡献留下清晰的记录，也方便大家一起补充和维护。
 
-不熟悉 GitHub 也没关系，你可以将文章、封面及可公开附件发送到 [eeecank@163.com](mailto:eeecank@163.com)。模板下载、填写方式与提交步骤请查看 [投稿指南](../submit/)，投稿审核后发布。
+不熟悉 GitHub 也没关系，你可以将文章、封面图片及可公开附件发送到 [eeecank@163.com](mailto:eeecank@163.com)。模板下载、填写方式与提交步骤请查看 [投稿指南](../submit/)，投稿审核后发布。
 
 发现错误、失效链接或有其他建议，欢迎提交 [Issue](https://github.com/JNU-CS-BAOYAN/CS2026/issues)，也可以通过上述邮箱反馈。
 
