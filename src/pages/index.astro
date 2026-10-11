@@ -3,12 +3,12 @@ import { Image } from 'astro:assets';
 import { getCollection, getEntry } from 'astro:content';
 import ExperienceCard from '../components/ExperienceCard.astro';
 import SiteLayout from '../layouts/SiteLayout.astro';
-import { groupByYear, sortByCollectedAt } from '../lib/experiences';
+import { groupByYear, sortByPublishedAt } from '../lib/experiences';
 import forewordArt from '../assets/foreword.svg';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const experiences = await getCollection('experiences', ({ data }) => !data.draft);
-const sorted = sortByCollectedAt(experiences);
+const sorted = sortByPublishedAt(experiences);
 const pageSize = 6;
 const pageCount = Math.max(1, Math.ceil(sorted.length / pageSize));
 const years = [...groupByYear(experiences).keys()];

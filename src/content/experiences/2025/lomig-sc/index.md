@@ -11,7 +11,7 @@ institutions:
   - "浙江大学"
   - "复旦大学"
   - "上海交通大学"
-collectedAt: 2026-10-03T02:26:01+08:00
+publishedAt: 2026-10-03T02:26:01+08:00
 ---
 
 # Lomig's SummerCamp Experiences

@@ -23,7 +23,7 @@ institutions:
   - "天津大学"
   - "重庆大学"
   - "南京航空航天大学"
-collectedAt: 2026-10-03T02:26:01+08:00
+publishedAt: 2026-10-03T02:26:01+08:00
 ---
 
 # Liwh's Pre-Recommendation Experiences 🎓

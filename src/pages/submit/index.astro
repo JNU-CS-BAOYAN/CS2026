@@ -69,11 +69,14 @@ undergraduateMajor: "人工智能"
 institutions:
   - "北京航空航天大学"
   - "东南大学"
-collectedAt: 2026-10-11
+publishedAt: 2026-10-11
 draft: false
 ---`}</code></pre>
     <p>投稿由维护者审核。合并到 main 后，网站会自动检查、构建并部署；提交 PR 或审核通过本身不会发布文章。没有封面时，维护者会从项目图片池中选择一张。</p>
-    <p><code>collectedAt</code> 是本站首次收录时间，由维护者发布前核对，不是申请年份或原文发表时间。本科专业和涉及院校会展示在卡片中，并用于搜索；院校建议填写完整名称，卡片会对常见院校使用简称。</p>
+    <p><code>publishedAt</code> 是本站首次发布时间，由维护者发布前核对，不是申请年份或原文在其他平台的发表时间。本科专业和涉及院校会展示在卡片中，并用于搜索；院校建议填写完整名称，卡片会对常见院校使用简称。</p>
+    <h2>文章元数据</h2>
+    <p>必需字段为 <code>title</code>（标题）、<code>author</code>（署名，可填写“匿名”）和 <code>applicationYear</code>（申请年份）。其余可选字段为 <code>undergraduateMajor</code>（本科专业）、<code>institutions</code>（涉及院校列表）、<code>summary</code>（简介）、<code>cover</code>（封面）、<code>sourceUrl</code>（原始出处）、<code>publishedAt</code>（本站首次发布时间）和 <code>finalDestination</code>（最终去向）。</p>
+    <p>本站专门收录江南大学同学的经历，本科院校无需另填。涉及院校记录申请经历，最终去向记录最后的选择；两者分别填写。本科专业不明确时可以留空，<code>draft</code> 和图片替代文字 <code>coverAlt</code> 可由维护者处理。</p>
     <p>如希望出现在贡献者列表，可一并提供 GitHub 个人主页链接，头像由维护者补充。更正、撤下或其他问题可通过<a href={`mailto:${SUBMISSION_EMAIL}`}>邮箱</a>或 <a href="https://github.com/JNU-CS-BAOYAN/CS2026/issues">Issue</a> 联系。</p>
   </section>
 </SiteLayout>

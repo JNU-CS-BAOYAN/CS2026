@@ -10,7 +10,7 @@ institutions:
   - "南京大学"
   - "西安交通大学"
   - "同济大学"
-collectedAt: 2026-10-03T02:26:01+08:00
+publishedAt: 2026-10-03T02:26:01+08:00
 ---
 
 # Leo's YuTuiMian Experiences

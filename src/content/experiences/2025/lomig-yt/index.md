@@ -7,7 +7,7 @@ coverAlt: "2025-lomig-yt 经验贴封面"
 draft: false
 institutions:
   - "东南大学"
-collectedAt: 2026-10-03T02:26:01+08:00
+publishedAt: 2026-10-03T02:26:01+08:00
 ---
 
 # Lomig's Pre-Recommendation Experiences

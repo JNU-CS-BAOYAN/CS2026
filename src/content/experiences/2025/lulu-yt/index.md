@@ -11,7 +11,7 @@ institutions:
   - "同济大学"
   - "南京大学"
   - "浙江大学"
-collectedAt: 2026-10-03T02:26:01+08:00
+publishedAt: 2026-10-03T02:26:01+08:00
 ---
 # Lulu's YuTuiMian Experiences
 

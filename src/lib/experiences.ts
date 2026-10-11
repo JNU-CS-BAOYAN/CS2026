@@ -39,10 +39,10 @@ export function groupByYear(entries: ExperienceEntry[]) {
   }, new Map<number, ExperienceEntry[]>());
 }
 
-/** Collection date is independent of the application year and original publication date. */
-export function sortByCollectedAt(entries: ExperienceEntry[]) {
+/** First publication on this site determines the latest collections, independently of application year. */
+export function sortByPublishedAt(entries: ExperienceEntry[]) {
   return sortExperiences(entries).sort((a, b) =>
-    (b.data.collectedAt?.valueOf() ?? 0) - (a.data.collectedAt?.valueOf() ?? 0),
+    (b.data.publishedAt?.valueOf() ?? 0) - (a.data.publishedAt?.valueOf() ?? 0),
   );
 }
 

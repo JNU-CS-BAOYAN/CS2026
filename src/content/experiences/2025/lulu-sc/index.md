@@ -12,7 +12,7 @@ institutions:
   - "中国科学技术大学"
   - "华东师范大学"
   - "东南大学"
-collectedAt: 2026-10-03T02:26:01+08:00
+publishedAt: 2026-10-03T02:26:01+08:00
 ---
 # Lu's SummerCamp Experiences
 

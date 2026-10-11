@@ -4,7 +4,6 @@ import type { ExperienceEntry } from '../lib/experiences';
 import { experiencePath } from '../lib/experiences';
 import { pooledCover } from '../lib/cover-pool';
 import ExperienceMetadata from './ExperienceMetadata.astro';
-import FormattedDate from './FormattedDate.astro';
 
 interface Props {
   entry: ExperienceEntry;
@@ -19,10 +18,9 @@ const coverAlt = entry.data.coverAlt ?? `${entry.data.title}封面`;
   </a>
   <div class="card-body">
     <p class="eyebrow">{entry.data.applicationYear} · {entry.data.author}</p>
-    <h3><a href={experiencePath(entry)}>{entry.data.title}</a></h3>
+    <h3><a href={experiencePath(entry)} title={entry.data.title}>{entry.data.title}</a></h3>
     {entry.data.summary && <p class="card-summary">{entry.data.summary}</p>}
     <ExperienceMetadata undergraduateMajor={entry.data.undergraduateMajor} institutions={entry.data.institutions} compact articlePath={experiencePath(entry)} />
-    {entry.data.collectedAt && <p class="card-collected">收录于 <FormattedDate date={entry.data.collectedAt} /></p>}
     <a class="read-link" href={experiencePath(entry)}>阅读全文 <span aria-hidden="true">→</span></a>
   </div>
 </article>

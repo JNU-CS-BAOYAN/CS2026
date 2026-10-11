@@ -245,6 +245,8 @@ h3 { margin: 0; font-size: 1.1rem; }
 .year-link span { color: var(--muted); font-size: .9rem; }
 .experience-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 .experience-card {
+  display: flex;
+  flex-direction: column;
   overflow: hidden;
   border: 1px solid var(--border);
   border-radius: var(--radius);
@@ -253,21 +255,31 @@ h3 { margin: 0; font-size: 1.1rem; }
 }
 .experience-card:hover { box-shadow: var(--shadow); transform: translateY(-3px); }
 .pagination-item { min-width: 0; }
-.card-cover { display: block; aspect-ratio: 16/9; overflow: hidden; background: var(--surface-soft); }
-.card-cover img { width: 100%; height: 100%; object-fit: cover; transition: transform .25s ease; }
+.card-cover { display: block; flex: none; aspect-ratio: 16/9; overflow: hidden; background: var(--surface-soft); }
+.card-cover img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform .25s ease; }
 .experience-card:hover .card-cover img { transform: scale(1.025); }
-.card-body { padding: 1.1rem 1.2rem 1.3rem; }
-.card-body h3 a { color: var(--text); text-decoration: none; }
+.card-body { display: flex; flex-direction: column; gap: .55rem; height: 18.5rem; padding: 1.1rem 1.2rem 1.3rem; }
+.card-body > .eyebrow { flex: none; margin: 0; line-height: 1.35; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.card-body h3 { flex: none; height: 2.7em; margin: 0; font-size: 1.08rem; line-height: 1.35; }
+.card-body h3 a { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; color: var(--text); text-decoration: none; }
 .card-body h3 a:hover { color: var(--accent-deep); }
-.card-summary { margin: .65rem 0; color: var(--muted); font-size: .94rem; }
+.card-summary { display: -webkit-box; flex: none; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; margin: 0; color: var(--muted); font-size: .86rem; line-height: 1.55; }
+.card-metadata { display: grid; flex: none; gap: .45rem; }
+.card-major { margin: 0; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; font-size: .82rem; line-height: 1.5; }
+.card-major a { color: var(--muted); text-decoration: none; }
+.card-major a:hover { color: var(--accent-deep); }
+.institution-tags { display: flex; flex-wrap: wrap; align-items: flex-start; gap: .35rem; }
+.institution-tag { display: inline-block; max-width: 100%; padding: .22rem .6rem; border: 1px solid var(--border); border-radius: 999px; background: var(--surface-soft); color: var(--text); font-size: .78rem; line-height: 1.3; text-decoration: none; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.institution-tag:hover { border-color: var(--accent); color: var(--accent-deep); }
+.institution-tag:focus-visible, .card-major a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.card-metadata .institution-tag { max-width: 8em; }
+.institution-tag.metadata-more { background: transparent; color: var(--muted); }
+.card-body > .read-link { flex: none; margin-top: auto; }
 .experience-metadata { display: grid; gap: .45rem; margin: .85rem 0 0; font-size: .9rem; line-height: 1.55; }
-.experience-metadata.compact { font-size: .82rem; }
 .experience-metadata > div { display: grid; grid-template-columns: 4em minmax(0, 1fr); gap: .6rem; }
 .experience-metadata dt { color: var(--muted); }
 .experience-metadata dd { display: flex; flex-wrap: wrap; gap: .2rem .65rem; margin: 0; }
 .experience-metadata a { text-decoration: none; }
-.experience-metadata .metadata-more { color: var(--muted); }
-.card-collected { margin: .65rem 0 0; color: var(--muted); font-size: .78rem; }
 .read-link { display: inline-block; margin-top: .4rem; font-size: .9rem; font-weight: 750; text-decoration: none; }
 .year-nav {
   display: flex;
