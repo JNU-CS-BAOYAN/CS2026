@@ -8,7 +8,7 @@ import { groupByYear, sortExperiences, type ExperienceEntry } from '../../../lib
 import { EXPERIENCE_PAGE_SIZE, pageSlice, totalPages } from '../../../lib/pagination';
 
 export async function getStaticPaths() {
-  const experiences = await getCollection('experiences', ({ data }) => !data.draft);
+  const experiences = await getCollection('experiences');
   const sorted = sortExperiences(experiences);
   const pageCount = totalPages(sorted.length);
   const years = [...groupByYear(experiences).keys()];

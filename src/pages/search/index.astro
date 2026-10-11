@@ -3,7 +3,7 @@ import { getCollection } from 'astro:content';
 import SearchBox from '../../components/SearchBox.astro';
 import SiteLayout from '../../layouts/SiteLayout.astro';
 
-const experiences = await getCollection('experiences', ({ data }) => !data.draft);
+const experiences = await getCollection('experiences');
 ---
 
 <SiteLayout title="搜索经验贴" description="搜索 JNU CS BAOYAN 的经验文章。">

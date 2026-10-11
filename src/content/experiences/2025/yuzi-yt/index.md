@@ -3,8 +3,6 @@ title: "Yuzi's Pre-Recommendation Experiences"
 author: "yuzi"
 applicationYear: 2025
 cover: "./cover.jpg"
-coverAlt: "2025-yuzi-yt 经验贴封面"
-draft: false
 institutions:
   - "南京理工大学"
   - "江南大学"

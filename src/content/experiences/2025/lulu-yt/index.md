@@ -3,8 +3,6 @@ title: "Lulu's YuTuiMian Experiences"
 author: "LuLu"
 applicationYear: 2025
 cover: "./cover.jpg"
-coverAlt: "2025-lulu-yt 经验贴封面"
-draft: false
 institutions:
   - "中南大学"
   - "天津大学"

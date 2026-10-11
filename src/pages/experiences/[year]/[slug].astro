@@ -4,7 +4,7 @@ import ArticleLayout from '../../../layouts/ArticleLayout.astro';
 import { experienceSlug, sortExperiences, type ExperienceEntry } from '../../../lib/experiences';
 
 export async function getStaticPaths() {
-  const experiences = await getCollection('experiences', ({ data }) => !data.draft);
+  const experiences = await getCollection('experiences');
   return sortExperiences(experiences).map((entry) => ({
     params: { year: String(entry.data.applicationYear), slug: experienceSlug(entry) },
     props: { entry },

@@ -38,7 +38,6 @@ institutions:
   - "北京航空航天大学"
   - "东南大学"
 publishedAt: 2026-10-11
-draft: false
 ---
 ```
 
@@ -55,13 +54,12 @@ draft: false
 | `applicationYear` | 是 | 保研申请年份 |
 | `undergraduateMajor` | 否 | 本科专业，用于卡片显示和搜索 |
 | `institutions` | 否 | 涉及院校的完整名称列表，用于卡片药丸标签和搜索 |
-| `summary` | 否 | 文章简介；卡片显示一行，文章页显示完整内容 |
 | `cover` | 否 | 封面路径；省略时使用图片池 |
 | `sourceUrl` | 否 | 原始出处的完整 URL，目前用于记录来源 |
 | `publishedAt` | 否 | 本站首次发布时间，用于“最新收录”排序，卡片不显示日期 |
 | `finalDestination` | 否 | 最终去向，在文章页显示 |
 
-本科院校固定为江南大学，不另设字段。`institutions` 指文章中的申请院校，不等于最终去向。`draft`（默认 false）仅控制是否公开，`coverAlt` 是可选的图片替代文字，这两项保留为维护选项，不要求投稿者填写。
+本科院校固定为江南大学，不另设字段。`institutions` 指文章中的申请院校，不等于最终去向。封面替代文字由文章标题自动生成；无需摘要或草稿字段，投稿经审核并合并到 `main` 后发布。
 
 网站的介绍与说明文案统一位于 `src/content/pages/`：
 

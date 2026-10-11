@@ -15,7 +15,6 @@ const records = entries.map((entry) => ({
   undergraduateMajor: entry.data.undergraduateMajor ?? '',
   institutions: entry.data.institutions.map(institutionDisplayName),
   institutionKeywords: institutionSearchText(entry.data.institutions),
-  summary: entry.data.summary ?? '',
   text: entry.body ?? '',
   path: experiencePath(entry),
 }));
@@ -41,7 +40,6 @@ const serialized = JSON.stringify(records).replace(/</g, '\\u003c');
     undergraduateMajor: string;
     institutions: string[];
     institutionKeywords: string;
-    summary: string;
     text: string;
     path: string;
   }
@@ -64,7 +62,7 @@ const serialized = JSON.stringify(records).replace(/</g, '\\u003c');
     }
     const terms = normalizedQuery.split(' ');
     const matches = data.filter((item) => {
-      const searchable = normalize(`${item.title} ${item.author} ${item.year} ${item.undergraduateMajor} ${item.institutionKeywords} ${item.summary} ${item.text}`);
+      const searchable = normalize(`${item.title} ${item.author} ${item.year} ${item.undergraduateMajor} ${item.institutionKeywords} ${item.text}`);
       return terms.every((term) => searchable.includes(term));
     });
     results.replaceChildren();
@@ -82,7 +80,7 @@ const serialized = JSON.stringify(records).replace(/</g, '\\u003c');
       if (item.undergraduateMajor) metadata.push(item.undergraduateMajor);
       if (item.institutions.length) metadata.push(`涉及院校：${item.institutions.slice(0, 3).join('、')}${item.institutions.length > 3 ? ` 等 ${item.institutions.length} 所` : ''}`);
       meta.textContent = metadata.join(' · ');
-      const source = `${item.summary} ${item.text}`.replace(/[#*_`>\[\]()]/g, ' ').replace(/\s+/g, ' ').trim();
+      const source = item.text.replace(/[#*_`>\[\]()]/g, ' ').replace(/\s+/g, ' ').trim();
       const position = normalize(source).indexOf(normalizedQuery);
       const start = Math.max(0, position - 55);
       const snippet = document.createElement('p');

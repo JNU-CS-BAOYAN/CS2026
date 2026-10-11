@@ -3,8 +3,6 @@ title: "我参加的几个学校经验分享"
 author: "MKK"
 applicationYear: 2025
 cover: "./cover.jpg"
-coverAlt: "2025-mkk-sc 经验贴封面"
-draft: false
 institutions:
   - "厦门大学"
   - "电子科技大学（深圳研究院）"

@@ -3,8 +3,6 @@ title: "Le's Pre-Recommendation Experiences"
 author: "Le"
 applicationYear: 2025
 cover: "./cover.jpg"
-coverAlt: "2025-le-yt 经验贴封面"
-draft: false
 institutions:
   - "东南大学"
   - "湖南大学"

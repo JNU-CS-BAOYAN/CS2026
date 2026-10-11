@@ -3,8 +3,6 @@ title: "Haatohaaton 预推免"
 author: "haatohaaton"
 applicationYear: 2025
 cover: "./cover.jpg"
-coverAlt: "2025-haatohaaton-yt 经验贴封面"
-draft: false
 institutions:
   - "中南大学"
   - "南京大学"

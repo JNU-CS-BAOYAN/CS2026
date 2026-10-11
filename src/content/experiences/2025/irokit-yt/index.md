@@ -3,8 +3,6 @@ title: "irokit 的保研经验分享"
 author: "irokit"
 applicationYear: 2025
 cover: "./cover.jpg"
-coverAlt: "2025-irokit-yt 经验贴封面"
-draft: false
 institutions:
   - "北京航空航天大学"
   - "北京邮电大学"

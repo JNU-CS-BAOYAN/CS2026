@@ -10,16 +10,14 @@ interface Props {
 }
 const { entry } = Astro.props;
 const cover = entry.data.cover ?? pooledCover(entry.id);
-const coverAlt = entry.data.coverAlt ?? `${entry.data.title}封面`;
 ---
 <article class="experience-card">
   <a class="card-cover" href={experiencePath(entry)}>
-    <Image src={cover} alt={coverAlt} width={720} height={405} />
+    <Image src={cover} alt={`${entry.data.title}封面`} width={720} height={405} />
   </a>
   <div class="card-body">
     <p class="eyebrow">{entry.data.applicationYear} · {entry.data.author}</p>
     <h3><a href={experiencePath(entry)} title={entry.data.title}>{entry.data.title}</a></h3>
-    {entry.data.summary && <p class="card-summary">{entry.data.summary}</p>}
     <ExperienceMetadata undergraduateMajor={entry.data.undergraduateMajor} institutions={entry.data.institutions} compact articlePath={experiencePath(entry)} />
     <a class="read-link" href={experiencePath(entry)}>阅读全文 <span aria-hidden="true">→</span></a>
   </div>

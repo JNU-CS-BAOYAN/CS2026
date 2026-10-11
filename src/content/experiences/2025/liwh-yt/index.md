@@ -3,8 +3,6 @@ title: "Liwh's Pre-Recommendation Experiences 🎓"
 author: "Liwh"
 applicationYear: 2025
 cover: "./cover.jpg"
-coverAlt: "2025-liwh-yt 经验贴封面"
-draft: false
 undergraduateMajor: "数字媒体技术"
 institutions:
   - "湖南大学"

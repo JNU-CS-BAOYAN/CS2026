@@ -3,8 +3,6 @@ title: "zhaoli's 保研经验分享"
 author: "kikinvb"
 applicationYear: 2025
 cover: "./cover.jpg"
-coverAlt: "2025-kikinvb-yt 经验贴封面"
-draft: false
 undergraduateMajor: "计算机科学与技术"
 institutions:
   - "南京航空航天大学"

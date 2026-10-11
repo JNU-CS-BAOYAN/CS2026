@@ -3,8 +3,6 @@ title: "保研总结"
 author: "vegetable"
 applicationYear: 2025
 cover: "./cover.jpg"
-coverAlt: "2025-vegetable-sc 经验贴封面"
-draft: false
 institutions:
   - "东北大学"
   - "国防科技大学"

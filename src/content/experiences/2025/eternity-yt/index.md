@@ -3,8 +3,6 @@ title: "Eternity's Pre-Recommendation Experiences"
 author: "eternity"
 applicationYear: 2025
 cover: "./cover.jpg"
-coverAlt: "Eternity 经验贴默认封面"
-draft: false
 institutions:
   - "东南大学"
   - "湖南大学"

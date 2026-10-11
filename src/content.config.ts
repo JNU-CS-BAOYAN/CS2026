@@ -11,13 +11,10 @@ const experiences = defineCollection({
       applicationYear: z.number().int().min(2000).max(2100),
       undergraduateMajor: z.string().trim().min(1).optional(),
       institutions: z.array(z.string().trim().min(1)).default([]),
-      summary: z.string().optional(),
       cover: image().optional(),
-      coverAlt: z.string().optional(),
       publishedAt: z.coerce.date().optional(),
       finalDestination: z.string().optional(),
       sourceUrl: z.url().optional(),
-      draft: z.boolean().default(false),
     }),
 });
 

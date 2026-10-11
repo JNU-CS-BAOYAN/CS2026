@@ -3,8 +3,6 @@ title: "Lu's SummerCamp Experiences"
 author: "LuLu"
 applicationYear: 2025
 cover: "./cover.jpg"
-coverAlt: "2025-lulu-sc 经验贴封面"
-draft: false
 institutions:
   - "同济大学"
   - "上海交通大学"

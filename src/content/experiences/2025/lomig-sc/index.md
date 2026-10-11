@@ -3,8 +3,6 @@ title: "Lomig's SummerCamp Experiences"
 author: "Lomig"
 applicationYear: 2025
 cover: "./cover.png"
-coverAlt: "2025-lomig-sc 经验贴封面"
-draft: false
 institutions:
   - "南京航空航天大学"
   - "华东理工大学"
