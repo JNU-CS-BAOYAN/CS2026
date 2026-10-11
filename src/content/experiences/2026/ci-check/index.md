@@ -1,7 +1,7 @@
 ---
 title: "CI 投稿流程验证（请勿合并）"
-author: "ci-check"
-applicationYear: 2026
+author: "wrong-author"
+applicationYear: 2025
 ---
 
 ## 验证说明
