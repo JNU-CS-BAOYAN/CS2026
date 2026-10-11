@@ -216,8 +216,15 @@ h3 { margin: 0; font-size: 1.1rem; }
 }
 .prose table { display: block; overflow-x: auto; border-collapse: collapse; }
 .prose th, .prose td { min-width: 7rem; padding: .55rem .7rem; border: 1px solid var(--border); text-align: left; }
-.prose code { padding: .1em .35em; border-radius: 5px; background: var(--surface-soft); }
-.prose pre { overflow-x: auto; padding: 1rem; border-radius: 12px; background: #2d2926; color: #fffaf4; }
+.prose code { padding: .1em .35em; border-radius: 5px; background: var(--surface-soft); color: var(--text); }
+.prose pre { overflow-x: auto; padding: 1rem; border: 1px solid var(--border); border-radius: 12px; background: var(--surface-soft); color: var(--text); }
+.prose pre code { padding: 0; border-radius: 0; background: transparent; color: inherit; }
+/* 高亮代码块跟随顶部主题按钮；亮色使用 Shiki 默认生成的配色。 */
+:root[data-theme="dark"] .astro-code,
+:root[data-theme="dark"] .astro-code span {
+  color: var(--shiki-dark) !important;
+  background-color: var(--shiki-dark-bg) !important;
+}
 .prose img { border-radius: 12px; }
 .section-heading {
   display: flex;
@@ -265,7 +272,7 @@ h3 { margin: 0; font-size: 1.1rem; }
 .card-body h3 a { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; color: var(--text); text-decoration: none; }
 .card-body h3 a:hover { color: var(--accent-deep); }
 .card-summary { overflow: hidden; flex: none; white-space: nowrap; text-overflow: ellipsis; margin: 0; color: var(--muted); font-size: .86rem; line-height: 1.55; }
-.card-metadata { display: grid; flex: none; gap: .5rem; }
+.card-metadata { display: grid; min-width: 0; flex: none; gap: .5rem; }
 .card-major { margin: 0; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; font-size: .82rem; line-height: 1.5; }
 .card-major a { color: var(--muted); text-decoration: none; }
 .card-major a:hover { color: var(--accent-deep); }
@@ -273,8 +280,9 @@ h3 { margin: 0; font-size: 1.1rem; }
 .institution-tag { display: inline-block; max-width: 100%; padding: .22rem .6rem; border: 1px solid var(--border); border-radius: 999px; background: var(--surface-soft); color: var(--text); font-size: .78rem; line-height: 1.3; text-decoration: none; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
 .institution-tag:hover { border-color: var(--accent); color: var(--accent-deep); }
 .institution-tag:focus-visible, .card-major a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-.card-metadata .institution-tags { flex-wrap: nowrap; }
-.card-metadata .institution-tag { min-width: 0; max-width: 8em; flex-shrink: 1; }
+.card-metadata .institution-tags { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; }
+.card-metadata .institution-tags::-webkit-scrollbar { display: none; }
+.card-metadata .institution-tag { max-width: none; flex-shrink: 0; }
 .card-metadata .metadata-more { flex-shrink: 0; }
 .institution-tag.metadata-more { background: transparent; color: var(--muted); }
 .card-body > .read-link { flex: none; margin-top: auto; }
@@ -319,6 +327,7 @@ h3 { margin: 0; font-size: 1.1rem; }
 }
 .resource-card h3 { margin-bottom: .45rem; }
 .resource-card p { margin: 0; color: var(--muted); font-size: .95rem; }
+.submission-tools { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .template-preview { margin-top: 1.5rem; }
 .template-preview summary { cursor: pointer; font-weight: 700; }
 .template-preview pre { max-height: 26rem; overflow: auto; }

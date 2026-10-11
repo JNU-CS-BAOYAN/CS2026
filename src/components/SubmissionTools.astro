@@ -1,35 +1,24 @@
 ---
-import { SUBMISSION_EMAIL } from '../consts';
 import { readFileSync } from 'node:fs';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const markdownTemplate = readFileSync('public/templates/submission-template.md', 'utf8');
 ---
-<section class="resource-grid">
+<section class="resource-grid submission-tools">
     <div class="resource-card">
       <h3>Markdown 模板</h3>
-      <p>适合熟悉 Markdown 的投稿者，下载后直接填写。</p>
-      <p><a class="button" href={`${base}/templates/submission-template.md`} download="JNU-CS-BAOYAN-投稿模板.md" data-template-download>下载 .md 模板</a></p>
-    </div>
-    <div class="resource-card">
-      <h3>Word 模板</h3>
-      <p>使用与 Markdown 对应的标题层级和章节结构。</p>
-      <p><a class="button" href={`${base}/templates/submission-template.docx`} download="JNU-CS-BAOYAN-投稿模板.docx">下载 .docx 模板</a></p>
-    </div>
-    <div class="resource-card">
-      <h3>投稿邮箱</h3>
-      <p>请将正文文件、可公开图片和附件发送到：</p>
-      <p><a href={`mailto:${SUBMISSION_EMAIL}`}><strong>{SUBMISSION_EMAIL}</strong></a></p>
+      <p>下载为 index.md，按注释填写必填与选填字段，再撰写正文。</p>
+      <p><a class="button" href={`${base}/templates/submission-template.md`} download="index.md" data-template-download>下载 .md 模板</a></p>
     </div>
     <div class="resource-card">
       <h3>PR 投稿</h3>
-      <p>熟悉 GitHub 的同学可 Fork 仓库，添加文章后向 main 分支提交 PR。</p>
+      <p>当前新稿放在 2026 年目录，将包含 index.md、封面和正文插图的文件夹提交为 PR。</p>
       <p><a class="button" href="https://github.com/JNU-CS-BAOYAN/CS2026">打开项目仓库</a></p>
     </div>
   </section>
   <details class="prose template-preview" data-template-preview>
     <summary>查看或复制 Markdown 模板</summary>
-    <p>也可以复制下面的内容，保存为 .md 文件后填写。</p>
+    <p>也可以复制下面的内容，保存为 index.md 后填写。可选字段无需填写时，保留注释或删除即可。</p>
     <button class="button" type="button" data-copy-template hidden>复制模板</button>
     <pre><code data-template-source>{markdownTemplate}</code></pre>
   </details>

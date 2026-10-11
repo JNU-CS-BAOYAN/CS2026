@@ -1,4 +1,4 @@
-/** Display names also act as search aliases; the YAML keeps complete institution names. */
+/** Full institution names are displayed; short names are search aliases only. */
 const shortNames: Record<string, string> = {
   '北京航空航天大学': '北航',
   '东南大学': '东南',
@@ -48,9 +48,9 @@ const shortNames: Record<string, string> = {
 };
 
 export function institutionDisplayName(name: string) {
-  return shortNames[name] ?? name;
+  return name;
 }
 
 export function institutionSearchText(names: string[]) {
-  return names.map((name) => `${name} ${institutionDisplayName(name)}`).join(' ');
+  return names.map((name) => `${name} ${shortNames[name] ?? ''}`).join(' ');
 }
