@@ -14,7 +14,6 @@ const searchPath = (query: string) => `${sitePath('/search/')}?q=${encodeURIComp
 ---
 {compact ? (
   <div class="card-metadata">
-    {undergraduateMajor && <p class="card-major"><a href={searchPath(undergraduateMajor)} title={`本科专业：${undergraduateMajor}`}><span class="sr-only">本科专业：</span>{undergraduateMajor}</a></p>}
     {institutions.length > 0 && (
       <div class="institution-tags" aria-label="涉及院校">
         {visible.map((name) => <a class="institution-tag" href={searchPath(name)} title={name} aria-label={`搜索院校：${name}`}>{institutionDisplayName(name)}</a>)}
@@ -23,6 +22,7 @@ const searchPath = (query: string) => `${sitePath('/search/')}?q=${encodeURIComp
         )}
       </div>
     )}
+    {undergraduateMajor && <p class="card-major"><a href={searchPath(undergraduateMajor)} title={`本科专业：${undergraduateMajor}`}><span class="sr-only">本科专业：</span>{undergraduateMajor}</a></p>}
   </div>
 ) : (undergraduateMajor || institutions.length > 0) && (
   <dl class="experience-metadata">

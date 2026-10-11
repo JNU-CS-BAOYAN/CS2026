@@ -253,7 +253,7 @@ h3 { margin: 0; font-size: 1.1rem; }
   background: var(--surface);
   box-shadow: 0 8px 24px rgba(93, 67, 49, .04);
 }
-.experience-card:hover { box-shadow: var(--shadow); transform: translateY(-3px); }
+.experience-card:hover { box-shadow: var(--shadow); }
 .pagination-item { min-width: 0; }
 .card-cover { display: block; flex: none; aspect-ratio: 16/9; overflow: hidden; background: var(--surface-soft); }
 .card-cover img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform .25s ease; }
