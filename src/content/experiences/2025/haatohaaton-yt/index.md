@@ -7,7 +7,6 @@ institutions:
   - "中南大学"
   - "南京大学"
   - "华南理工大学"
-publishedAt: 2026-10-03T02:26:01+08:00
 ---
 
 # Haatohaaton 预推免

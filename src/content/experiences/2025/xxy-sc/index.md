@@ -5,7 +5,6 @@ applicationYear: 2025
 cover: "./cover.jpg"
 institutions:
   - "南京航空航天大学"
-publishedAt: 2026-10-03T02:26:01+08:00
 ---
 
 # 一点儿夏令营保研经验分享₍˄·͈༝·͈˄*₎◞ ̑̑

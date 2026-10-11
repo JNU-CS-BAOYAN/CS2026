@@ -23,6 +23,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
@@ -35,6 +37,9 @@ jobs:
 
       - name: Check content and types
         run: npm run check
+
+      - name: Test collection history
+        run: npm test
 
       - name: Build
         run: npm run build

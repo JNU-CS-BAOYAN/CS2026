@@ -12,7 +12,6 @@ const experiences = defineCollection({
       undergraduateMajor: z.string().trim().min(1).optional(),
       institutions: z.array(z.string().trim().min(1)).default([]),
       cover: image().optional(),
-      publishedAt: z.coerce.date().optional(),
       finalDestination: z.string().optional(),
       sourceUrl: z.url().optional(),
     }),

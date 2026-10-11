@@ -1,10 +1,10 @@
 ---
-import { getCollection, render } from 'astro:content';
+import { render } from 'astro:content';
 import ArticleLayout from '../../../layouts/ArticleLayout.astro';
-import { experienceSlug, sortExperiences, type ExperienceEntry } from '../../../lib/experiences';
+import { getExperiences, experienceSlug, sortExperiences, type ExperienceEntry } from '../../../lib/experiences';
 
 export async function getStaticPaths() {
-  const experiences = await getCollection('experiences');
+  const experiences = await getExperiences();
   return sortExperiences(experiences).map((entry) => ({
     params: { year: String(entry.data.applicationYear), slug: experienceSlug(entry) },
     props: { entry },

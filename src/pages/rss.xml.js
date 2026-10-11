@@ -1,18 +1,17 @@
-import { getCollection } from 'astro:content';
 import rss from '@astrojs/rss';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
-import { experiencePath, sortExperiences } from '../lib/experiences';
+import { experiencePath, getExperiences, sortByCollectedAt } from '../lib/experiences';
 
 export async function GET(context) {
-  const experiences = await getCollection('experiences');
+  const experiences = await getExperiences();
   return rss({
     title: SITE_TITLE,
     description: SITE_DESCRIPTION,
     site: context.site,
-    items: sortExperiences(experiences).map((entry) => ({
+    items: sortByCollectedAt(experiences).map((entry) => ({
       title: entry.data.title,
       description: `${entry.data.applicationYear} 年保研经验 · ${entry.data.author}`,
-      pubDate: entry.data.publishedAt,
+      pubDate: entry.collectedAt,
       link: experiencePath(entry),
     })),
   });

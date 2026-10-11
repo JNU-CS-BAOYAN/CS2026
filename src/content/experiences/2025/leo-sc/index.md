@@ -16,7 +16,6 @@ institutions:
   - "中山大学"
   - "西北工业大学"
   - "南京航空航天大学"
-publishedAt: 2026-10-03T02:26:01+08:00
 ---
 
 # Leo's SummerCamp Experiences

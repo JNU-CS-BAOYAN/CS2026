@@ -7,7 +7,6 @@ institutions:
   - "南京理工大学"
   - "江南大学"
   - "湖南大学"
-publishedAt: 2026-10-03T02:26:01+08:00
 ---
 
 # Yuzi's Pre-Recommendation Experiences

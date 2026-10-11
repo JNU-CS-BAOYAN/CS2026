@@ -42,7 +42,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
             <p class="eyebrow">{data.applicationYear} · {data.author}</p>
             <h1>{data.title}</h1>
             <div class="article-meta">
-              {data.publishedAt && <span>发布于 <FormattedDate date={data.publishedAt} /></span>}
+              {entry.collectedAt && <span>收录于 <FormattedDate date={entry.collectedAt} /></span>}
               {data.finalDestination && <span>最终去向：{data.finalDestination}</span>}
             </div>
             <ExperienceMetadata undergraduateMajor={data.undergraduateMajor} institutions={data.institutions} />

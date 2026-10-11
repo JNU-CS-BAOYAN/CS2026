@@ -14,7 +14,6 @@ institutions:
   - "华东师范大学"
   - "四川大学"
   - "中山大学"
-publishedAt: 2026-10-03T02:26:01+08:00
 ---
 
 # Eternity's Pre-Recommendation Experiences

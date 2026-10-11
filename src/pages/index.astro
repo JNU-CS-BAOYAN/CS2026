@@ -1,17 +1,17 @@
 ---
 import { Image } from 'astro:assets';
-import { getCollection, getEntry, render } from 'astro:content';
+import { getEntry, render } from 'astro:content';
 import ExperienceCard from '../components/ExperienceCard.astro';
 import SiteLayout from '../layouts/SiteLayout.astro';
-import { groupByYear, sortByPublishedAt } from '../lib/experiences';
+import { getExperiences, groupByYear, sortByCollectedAt } from '../lib/experiences';
 import forewordArt from '../assets/foreword.svg';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const home = await getEntry('pages', 'home');
 if (!home) throw new Error('Missing home page copy');
 const { Content: HomeContent } = await render(home);
-const experiences = await getCollection('experiences');
-const sorted = sortByPublishedAt(experiences);
+const experiences = await getExperiences();
+const sorted = sortByCollectedAt(experiences);
 const pageSize = 6;
 const pageCount = Math.max(1, Math.ceil(sorted.length / pageSize));
 const years = [...groupByYear(experiences).keys()];

@@ -1,14 +1,13 @@
 ---
-import { getCollection } from 'astro:content';
 import ExperienceCard from '../../../../components/ExperienceCard.astro';
 import Pagination from '../../../../components/Pagination.astro';
 import YearNav from '../../../../components/YearNav.astro';
 import SiteLayout from '../../../../layouts/SiteLayout.astro';
-import { groupByYear, type ExperienceEntry } from '../../../../lib/experiences';
+import { getExperiences, groupByYear, type ExperienceEntry } from '../../../../lib/experiences';
 import { EXPERIENCE_PAGE_SIZE, pageSlice, totalPages } from '../../../../lib/pagination';
 
 export async function getStaticPaths() {
-  const experiences = await getCollection('experiences');
+  const experiences = await getExperiences();
   const groups = groupByYear(experiences);
   const years = [...groups.keys()];
   return years.flatMap((year) => {

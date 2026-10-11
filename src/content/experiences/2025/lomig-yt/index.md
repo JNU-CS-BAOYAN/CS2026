@@ -5,7 +5,6 @@ applicationYear: 2025
 cover: "./cover.png"
 institutions:
   - "东南大学"
-publishedAt: 2026-10-03T02:26:01+08:00
 ---
 
 # Lomig's Pre-Recommendation Experiences
