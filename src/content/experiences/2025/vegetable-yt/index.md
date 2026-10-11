@@ -3,13 +3,7 @@ title: "保研总结"
 author: "vegetable"
 applicationYear: 2025
 cover: "./cover.jpg"
-institutions:
-  - "东北大学"
-  - "国防科技大学"
-  - "大连理工大学"
-  - "天津大学"
-  - "中山大学"
-  - "华南理工大学"
+institutions: []
 ---
 
 # 保研总结

@@ -9,11 +9,16 @@
     "test": "node --experimental-strip-types --experimental-test-isolation=none --test",
     "dev": "astro dev",
     "check": "astro check",
-    "build": "astro build",
+    "build": "astro build --force",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "check:content": "node scripts/check-content.mjs",
+    "check:links": "node scripts/check-built-links.mjs",
+    "review:contacts": "node scripts/review-content.mjs contacts",
+    "review:links": "node scripts/review-content.mjs links"
   },
   "dependencies": {
+    "@astrojs/markdown-satteri": "^0.4.2",
     "@astrojs/mdx": "^8.0.2",
     "@astrojs/rss": "^4.0.19",
     "@astrojs/sitemap": "^3.7.4",
@@ -24,6 +29,9 @@
     "esbuild": true
   },
   "devDependencies": {
-    "@astrojs/check": "^0.9.10"
+    "@astrojs/check": "^0.9.10",
+    "yaml": "^2.9.1",
+    "ultrahtml": "^1.7.0",
+    "html-escaper": "^3.0.3"
   }
 }

@@ -5,7 +5,6 @@ applicationYear: 2025
 cover: "./cover.jpg"
 institutions:
   - "东南大学"
-  - "中山大学"
 ---
 
 # Klein 的预推免经验帖

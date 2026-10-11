@@ -28,3 +28,6 @@ start-preview.sh
 
 # local maintenance notes (not published with the project)
 /docs/
+
+# generated maintenance reports (not website content)
+/reports/

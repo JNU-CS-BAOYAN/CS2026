@@ -81,6 +81,10 @@ const forewordCover = foreword?.data.image ?? forewordArt;
             </div>
           </nav>
         )}
+        <noscript>
+          <style is:inline>.home-pagination { display: none; }</style>
+          <p class="search-hint">首页展示前 {Math.min(pageSize, sorted.length)} 篇最新收录。<a href={`${base}/experiences/`}>浏览全部经验贴与静态分页 →</a></p>
+        </noscript>
       </>
     ) : (
       <p class="empty-state">经验贴正在整理中，欢迎提交第一篇分享。</p>

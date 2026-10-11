@@ -12,16 +12,15 @@ description: "保研准备建议、复习资料与工具入口。"
 
 - **简历 CV 写作指导**：[知乎文章](https://zhuanlan.zhihu.com/p/615923570)
 - **简历制作工具**：[木及简历](https://www.mujicv.com/)
-
-此外还欢迎通过 [投稿页面](../submit/) 分享可以公开的简历模板或示例。
+- LaTeX 制作简历：[Overleaf](https://www.overleaf.com/)
 
 ## 专业课与机器学习
 
 专业课复习可覆盖数据结构、计算机网络、操作系统和计算机组成原理，结合自己的课程、项目与申请方向安排重点。涉及机器学习或深度学习的方向，也可整理准备常见算法、模型及其在项目中的使用方式。
 
 - [Klein 的复习资料](https://github.com/kleinblue4/Record-of-Klein-s-25-BaoYan/tree/main/Review%20Material)：原作者仓库中的课程笔记和资料入口，请结合来源说明使用。
-- [其他的专业课面试经验](https://www.cnblogs.com/moonout/p/17286478.html#%E6%A6%82%E7%8E%87%E8%AE%BA)
-- [大模型基础](https://datawhalechina.github.io/learn-nlp-with-transformers/#/./%E7%AF%87%E7%AB%A02-Transformer%E7%9B%B8%E5%85%B3%E5%8E%9F%E7%90%86/2.2-%E5%9B%BE%E8%A7%A3transformer?id=transformer%E5%AE%8F%E8%A7%82%E7%BB%93%E6%9E%84)
+- [综合面试题库（MoonOut）](https://www.cnblogs.com/moonout/p/17286478.html)：作者根据 2022 年夏令营经历整理的问题，包含数学与专业课，供准备时参考。
+- [Transformer 图解（Datawhale）](https://datawhalechina.github.io/learn-nlp-with-transformers/#/%E7%AF%87%E7%AB%A02-Transformer%E7%9B%B8%E5%85%B3%E5%8E%9F%E7%90%86/2.2-%E5%9B%BE%E8%A7%A3transformer)：从整体结构到各模块的入门说明。
 
 ## 机试
 
@@ -29,7 +28,7 @@ description: "保研准备建议、复习资料与工具入口。"
 
 对于算法基础较为薄弱的同学，推荐使用 [AcWing](https://www.acwing.com/) 网站先将常考的算法温习一遍，后续可以使用 [洛谷](https://www.luogu.com.cn/)、[LeetCode](https://leetcode.cn/) 或 [AtCoder](https://atcoder.jp/) 进行专项算法的强化和学习。
 
-同时还应该关注目标院校的往年机试考察内容，并做相对应的准备，例如：中山大学计算机学院侧重考察 C++ 基础语法（面向对象特性、虚函数等）、南大智科侧重考察机器学习和深度学习的算法实现...
+同时还应该关注目标院校的往年机试考察内容，并做相对应的准备，例如：中山大学计算机学院侧重考察 C++ 基础语法（面向对象特性、虚函数等）、南大智科侧重考察机器学习和深度学习的算法实现等。**以上内容仅作往年经验参考，各院校每年的政策、考核范围和形式都可能有所变化，请关注目标院校当年的官方通知，并以官方要求为准。**
 
 ## 英语
 
@@ -38,7 +37,7 @@ description: "保研准备建议、复习资料与工具入口。"
 英语面试的准备主要是靠多背和多读，可以借助一些 AI 工具（如豆包、GPT）来进行口语面试的训练。
 
 - [Klein 的英语问答资料](https://github.com/kleinblue4/Record-of-Klein-s-25-BaoYan/tree/main/Review%20Material/%E8%8B%B1%E8%AF%AD%E9%97%AE%E7%AD%94)：原作者准备的问答与相关说明。
-- [其他的英语问答经验](https://www.cnblogs.com/moonout/p/17286432.html)
+- [英语口试参考（MoonOut）](https://www.cnblogs.com/moonout/p/17286432.html)：作者根据 2022 年夏令营经历整理的常见问题与自我介绍参考。
 
 ## 数学
 

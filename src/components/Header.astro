@@ -27,8 +27,8 @@ const hrefFor = (path: string) => `${base}${path}`;
     </a>
     <nav aria-label="主导航">
       <form class="header-search" action={hrefFor('/search/')} method="get" role="search">
-        <label class="sr-only" for="header-search-input">搜索经验贴</label>
-        <input id="header-search-input" type="search" name="q" placeholder="搜索" aria-label="搜索经验贴" />
+        <label class="sr-only" for="header-search-input">全站搜索</label>
+        <input id="header-search-input" type="search" name="q" placeholder="搜索" aria-label="全站搜索" />
         <button type="submit" aria-label="提交搜索">⌕</button>
       </form>
       <a class:list={{ active: currentPath === '/' }} href={hrefFor('/')}>首页</a>
@@ -43,8 +43,10 @@ const hrefFor = (path: string) => `${base}${path}`;
 <script>
   const root = document.documentElement;
   const toggle = document.querySelector<HTMLButtonElement>('[data-theme-toggle]');
-  const storedTheme = localStorage.getItem('jnu-cs-baoyan-theme');
-  if (storedTheme === 'dark' || storedTheme === 'light') root.dataset.theme = storedTheme;
+  try {
+    const storedTheme = localStorage.getItem('jnu-cs-baoyan-theme');
+    if (storedTheme === 'dark' || storedTheme === 'light') root.dataset.theme = storedTheme;
+  } catch {}
   const updateThemeButton = () => {
     const dark = root.dataset.theme === 'dark';
     if (toggle) {
@@ -56,7 +58,7 @@ const hrefFor = (path: string) => `${base}${path}`;
   toggle?.addEventListener('click', () => {
     const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
     root.dataset.theme = next;
-    localStorage.setItem('jnu-cs-baoyan-theme', next);
+    try { localStorage.setItem('jnu-cs-baoyan-theme', next); } catch {}
     updateThemeButton();
   });
 </script>

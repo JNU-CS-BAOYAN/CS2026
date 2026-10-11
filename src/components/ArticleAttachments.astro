@@ -1,0 +1,28 @@
+---
+import type { ArticleAttachment } from '../lib/article-attachments';
+
+interface Props {
+  attachments: ArticleAttachment[];
+}
+const { attachments } = Astro.props;
+---
+{attachments.length > 0 && (
+  <section class="article-attachments" aria-labelledby="article-attachments-heading">
+    <h2 id="article-attachments-heading">文章附件</h2>
+    <ul>
+      {attachments.map((attachment) => (
+        <li>
+          <a
+            href={attachment.href}
+            download={attachment.isImage ? undefined : attachment.name.split('/').at(-1)}
+            target={attachment.isImage ? '_blank' : undefined}
+            rel={attachment.isImage ? 'noopener' : undefined}
+          >
+            <span class="attachment-name">{attachment.name}</span>
+            <span class="attachment-action">{attachment.isImage ? '查看图片（新窗口）' : `下载 ${attachment.type}`}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </section>
+)}

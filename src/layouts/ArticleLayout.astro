@@ -8,6 +8,8 @@ import FormattedDate from '../components/FormattedDate.astro';
 import { pooledCover } from '../lib/cover-pool';
 import TableOfContents from '../components/TableOfContents.astro';
 import ExperienceMetadata from '../components/ExperienceMetadata.astro';
+import ArticleAttachments from '../components/ArticleAttachments.astro';
+import { articleAttachments } from '../lib/article-attachments';
 
 interface Heading {
   depth: number;
@@ -25,6 +27,7 @@ const { entry, previous, next } = Astro.props;
 const { headings = [] } = Astro.props;
 const data = entry.data;
 const cover = data.cover ?? pooledCover(entry.id);
+const attachments = articleAttachments(entry);
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 <!doctype html>
@@ -42,7 +45,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
           <Image class="article-cover" src={cover} alt={`${data.title}封面`} width={1200} height={675} />
           <header class="article-header">
             <p class="eyebrow">{data.applicationYear} · {data.author}</p>
-            <h1>{data.title}</h1>
+            <h1 id="article-title">{data.title}</h1>
             <div class="article-meta">
               {entry.collectedAt && <span>收录于 <FormattedDate date={entry.collectedAt} /></span>}
               {data.finalDestination && <span>最终去向：{data.finalDestination}</span>}
@@ -50,6 +53,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
             <ExperienceMetadata undergraduateMajor={data.undergraduateMajor} institutions={data.institutions} />
           </header>
           <div class="prose"><slot /></div>
+          <ArticleAttachments attachments={attachments} />
         </article>
       </div>
       <nav class="article-neighbor-nav" aria-label="上一篇和下一篇">

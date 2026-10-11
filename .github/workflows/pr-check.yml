@@ -1,0 +1,63 @@
+name: PR checks
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pr-check-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    name: Content, tests and build
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      # The PR merge ref must not be mistaken for the publication history.
+      - name: Keep main history for collection dates
+        run: git branch --force main refs/remotes/origin/main
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Report contact information in changed content
+        run: npm run review:contacts -- --base=origin/main
+
+      - name: Check submission structure and metadata
+        run: npm run check:content
+
+      - name: Check content and types
+        run: npm run check
+
+      - name: Test
+        run: npm test
+
+      - name: Build
+        run: npm run build
+
+      - name: Check built pages and local resources
+        run: npm run check:links
+
+      - name: Save contact review report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: contact-review
+          path: reports/contacts.*
+          retention-days: 14

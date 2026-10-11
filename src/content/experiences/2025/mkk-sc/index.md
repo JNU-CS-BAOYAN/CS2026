@@ -5,7 +5,7 @@ applicationYear: 2025
 cover: "./cover.jpg"
 institutions:
   - "厦门大学"
-  - "电子科技大学（深圳研究院）"
+  - "电子科技大学（深圳）高等研究院"
   - "东南大学"
 ---
 

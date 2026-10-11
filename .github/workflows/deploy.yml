@@ -35,14 +35,20 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Check submission structure and metadata
+        run: npm run check:content
+
       - name: Check content and types
         run: npm run check
 
-      - name: Test collection history
+      - name: Test
         run: npm test
 
       - name: Build
         run: npm run build
+
+      - name: Check built pages and local resources
+        run: npm run check:links
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

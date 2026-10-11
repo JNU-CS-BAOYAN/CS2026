@@ -1,48 +1,32 @@
 ---
-import type { ExperienceEntry } from '../lib/experiences';
-import { experiencePath } from '../lib/experiences';
-import { institutionDisplayName, institutionSearchText } from '../lib/institutions';
+import { sitePath } from '../lib/experiences';
+import type { SearchRecord } from '../lib/search';
 
 interface Props {
-  entries: ExperienceEntry[];
+  records: SearchRecord[];
 }
 
-const { entries } = Astro.props;
-const records = entries.map((entry) => ({
-  title: entry.data.title,
-  author: entry.data.author,
-  year: entry.data.applicationYear,
-  undergraduateMajor: entry.data.undergraduateMajor ?? '',
-  institutions: entry.data.institutions.map(institutionDisplayName),
-  institutionKeywords: institutionSearchText(entry.data.institutions),
-  text: (entry.body ?? '').replace(/<!--[\s\S]*?-->/g, ''),
-  path: experiencePath(entry),
-}));
+const { records } = Astro.props;
 const serialized = JSON.stringify(records).replace(/</g, '\\u003c');
 ---
 
 <section class="search-panel" data-search-panel>
   <form class="search-form" data-search-form role="search">
-    <label class="sr-only" for="experience-search">搜索经验贴</label>
-    <input id="experience-search" type="search" name="q" placeholder="搜索标题、作者、专业、院校或正文" autocomplete="off" data-search-input />
+    <label class="sr-only" for="site-search">全站搜索</label>
+    <input id="site-search" type="search" name="q" placeholder="搜索经验、资料、流程或投稿说明" autocomplete="off" data-search-input />
     <button class="button" type="submit">搜索</button>
   </form>
-  <p class="search-hint" data-search-hint>支持搜索标题、作者、申请年份、本科专业、涉及院校和正文；多个关键词用空格分隔。</p>
+  <p class="search-hint" data-search-hint>搜索全站标题和正文，也支持经验贴的作者、年份、专业及院校；多个关键词用空格分隔。</p>
   <div class="search-results" data-search-results aria-live="polite"></div>
+  <noscript>
+    <style is:inline>.search-panel .search-form { display: none; }</style>
+    <p class="search-hint">搜索需要启用 JavaScript。你也可以<a href={sitePath('/experiences/')}>按年份和页码浏览经验贴</a>，或打开<a href={sitePath('/resources/')}>资料与工具</a>、<a href={sitePath('/guide/')}>保研流程</a>和<a href={sitePath('/submit/')}>投稿说明</a>。</p>
+  </noscript>
 </section>
 
 <script type="application/json" data-search-index set:html={serialized}></script>
 <script>
-  interface SearchRecord {
-    title: string;
-    author: string;
-    year: number;
-    undergraduateMajor: string;
-    institutions: string[];
-    institutionKeywords: string;
-    text: string;
-    path: string;
-  }
+  import { searchRecords, searchSnippet, normalizeSearch, type SearchRecord } from '../lib/search';
 
   const panel = document.querySelector<HTMLElement>('[data-search-panel]');
   const form = panel?.querySelector<HTMLFormElement>('[data-search-form]');
@@ -51,22 +35,17 @@ const serialized = JSON.stringify(records).replace(/</g, '\\u003c');
   const hint = panel?.querySelector<HTMLElement>('[data-search-hint]');
   const data = JSON.parse(document.querySelector<HTMLScriptElement>('[data-search-index]')?.textContent ?? '[]') as SearchRecord[];
 
-  const normalize = (value: string) => value.toLocaleLowerCase().replace(/[\s\p{P}\p{S}]+/gu, ' ').trim();
   const render = (query: string) => {
     if (!results || !hint) return;
-    const normalizedQuery = normalize(query);
+    const normalizedQuery = normalizeSearch(query);
     if (!normalizedQuery) {
       results.replaceChildren();
-      hint.textContent = '支持搜索标题、作者、申请年份、本科专业、涉及院校和正文；多个关键词用空格分隔。';
+      hint.textContent = '搜索全站标题和正文，也支持经验贴的作者、年份、专业及院校；多个关键词用空格分隔。';
       return;
     }
-    const terms = normalizedQuery.split(' ');
-    const matches = data.filter((item) => {
-      const searchable = normalize(`${item.title} ${item.author} ${item.year} ${item.undergraduateMajor} ${item.institutionKeywords} ${item.text}`);
-      return terms.every((term) => searchable.includes(term));
-    });
+    const matches = searchRecords(data, query);
     results.replaceChildren();
-    hint.textContent = `找到 ${matches.length} 篇相关经验贴`;
+    hint.textContent = `找到 ${matches.length} 条相关内容`;
     for (const item of matches) {
       const card = document.createElement('article');
       card.className = 'search-result';
@@ -76,16 +55,13 @@ const serialized = JSON.stringify(records).replace(/</g, '\\u003c');
       link.textContent = item.title;
       const meta = document.createElement('p');
       meta.className = 'search-result-meta';
-      const metadata = [`${item.year}`, item.author];
+      const metadata = item.kind === 'experience' ? ['经验贴', `${item.year}`, item.author] : ['站点说明', item.section];
       if (item.undergraduateMajor) metadata.push(item.undergraduateMajor);
       if (item.institutions.length) metadata.push(`涉及院校：${item.institutions.slice(0, 3).join('、')}${item.institutions.length > 3 ? ` 等 ${item.institutions.length} 所` : ''}`);
       meta.textContent = metadata.join(' · ');
-      const source = item.text.replace(/[#*_`>\[\]()]/g, ' ').replace(/\s+/g, ' ').trim();
-      const position = normalize(source).indexOf(normalizedQuery);
-      const start = Math.max(0, position - 55);
       const snippet = document.createElement('p');
       snippet.className = 'search-result-snippet';
-      snippet.textContent = `${start > 0 ? '…' : ''}${source.slice(start, start + 180)}${start + 180 < source.length ? '…' : ''}`;
+      snippet.textContent = searchSnippet(item.text, query);
       card.append(link, meta, snippet);
       results.append(card);
     }

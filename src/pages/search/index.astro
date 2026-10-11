@@ -1,16 +1,46 @@
 ---
-import { getExperiences } from '../../lib/experiences';
+import { getCollection } from 'astro:content';
+import { experiencePath, getExperiences, sitePath } from '../../lib/experiences';
+import { institutionDisplayName, institutionSearchText } from '../../lib/institutions';
+import { buildSearchIndex, type SearchSource } from '../../lib/search-index';
 import SearchBox from '../../components/SearchBox.astro';
 import SiteLayout from '../../layouts/SiteLayout.astro';
 
-const experiences = await getExperiences();
+const [experiences, pages] = await Promise.all([getExperiences(), getCollection('pages')]);
+const pageRoutes = [
+  { id: 'home', section: '首页', path: '/' },
+  { id: 'resources', section: '资料与工具', path: '/resources/' },
+  { id: 'guide', section: '保研流程', path: '/guide/' },
+  { id: 'foreword', section: '启航絮语', path: '/foreword/' },
+  { id: 'submit', section: '投稿说明', path: '/submit/' },
+  { id: 'about', section: '关于', path: '/about/' },
+];
+const sources: SearchSource[] = experiences.map((entry) => ({
+  kind: 'experience', section: '经验贴', title: entry.data.title,
+  author: entry.data.author, year: entry.data.applicationYear,
+  undergraduateMajor: entry.data.undergraduateMajor ?? '',
+  institutions: entry.data.institutions.map(institutionDisplayName),
+  institutionKeywords: institutionSearchText(entry.data.institutions),
+  body: entry.body ?? '', path: experiencePath(entry),
+}));
+for (const route of pageRoutes) {
+  const page = pages.find((entry) => entry.id === route.id);
+  if (!page) throw new Error(`Missing search page: ${route.id}`);
+  sources.push({
+    kind: 'page', section: route.section, title: page.data.heading ?? page.data.title,
+    author: '', year: null, undergraduateMajor: '', institutions: [], institutionKeywords: '',
+    body: page.body ?? '', extraText: [page.data.title, page.data.intro, page.data.description].filter(Boolean).join(' '),
+    path: sitePath(route.path),
+  });
+}
+const records = await buildSearchIndex(sources);
 ---
 
-<SiteLayout title="搜索经验贴" description="搜索 JNU CS BAOYAN 的经验文章。">
+<SiteLayout title="站内搜索" description="搜索保研经验、资料、流程和投稿说明。">
   <header class="page-title">
     <p class="eyebrow">SEARCH</p>
-    <h1>搜索经验贴</h1>
-    <p>按标题、作者、申请年份或正文内容查找文章。</p>
+    <h1>站内搜索</h1>
+    <p>查找保研经验、准备资料、流程建议和网站说明。</p>
   </header>
-  <SearchBox entries={experiences} />
+  <SearchBox records={records} />
 </SiteLayout>
