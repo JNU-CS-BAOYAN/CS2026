@@ -1,122 +1,18 @@
 ---
 import SiteLayout from '../../layouts/SiteLayout.astro';
-import { SUBMISSION_EMAIL } from '../../consts';
-import { readFileSync } from 'node:fs';
+import SubmissionTools from '../../components/SubmissionTools.astro';
+import { getEntry, render } from 'astro:content';
 
-const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-const markdownTemplate = readFileSync('public/templates/submission-template.md', 'utf8');
+const entry = await getEntry('pages', 'submit');
+if (!entry) throw new Error('Missing submission page');
+const { Content } = await render(entry);
 ---
-<SiteLayout title="投稿" description="下载经验贴投稿模板并联系维护者。">
+<SiteLayout title={entry.data.title} description={entry.data.description}>
   <header class="page-title">
     <p class="eyebrow">SUBMIT</p>
-    <h1>分享一篇经验</h1>
-    <p>欢迎写下一篇完整的保研经历。推荐通过 PR 投稿，也可以使用邮箱；投稿由维护者人工审核、整理和发布。</p>
+    <h1>{entry.data.heading ?? entry.data.title}</h1>
+    {entry.data.intro && <p>{entry.data.intro}</p>}
   </header>
-  <section class="resource-grid">
-    <div class="resource-card">
-      <h3>Markdown 模板</h3>
-      <p>适合熟悉 Markdown 的投稿者，下载后直接填写。</p>
-      <p><a class="button" href={`${base}/templates/submission-template.md`} download="JNU-CS-BAOYAN-投稿模板.md" data-template-download>下载 .md 模板</a></p>
-    </div>
-    <div class="resource-card">
-      <h3>Word 模板</h3>
-      <p>使用与 Markdown 对应的标题层级和章节结构。</p>
-      <p><a class="button" href={`${base}/templates/submission-template.docx`} download="JNU-CS-BAOYAN-投稿模板.docx">下载 .docx 模板</a></p>
-    </div>
-    <div class="resource-card">
-      <h3>投稿邮箱</h3>
-      <p>请将正文文件、可公开图片和附件发送到：</p>
-      <p><a href={`mailto:${SUBMISSION_EMAIL}`}><strong>{SUBMISSION_EMAIL}</strong></a></p>
-    </div>
-    <div class="resource-card">
-      <h3>PR 投稿</h3>
-      <p>熟悉 GitHub 的同学可 Fork 仓库，添加文章后向 main 分支提交 PR。</p>
-      <p><a class="button" href="https://github.com/JNU-CS-BAOYAN/CS2026">打开项目仓库</a></p>
-    </div>
-  </section>
-  <details class="prose template-preview" data-template-preview>
-    <summary>查看或复制 Markdown 模板</summary>
-    <p>也可以复制下面的内容，保存为 .md 文件后填写。</p>
-    <button class="button" type="button" data-copy-template hidden>复制模板</button>
-    <pre><code data-template-source>{markdownTemplate}</code></pre>
-  </details>
-  <p role="status" aria-live="polite" data-template-status></p>
-  <section class="prose" style="margin-top: 3rem;">
-    <h2>通过邮箱投稿</h2>
-    <p>下载上方 Markdown 或 Word 模板并填写正文，将文章、封面和可公开附件一起发送到 <a href={`mailto:${SUBMISSION_EMAIL}`}>{SUBMISSION_EMAIL}</a>。请注明申请年份、希望显示的署名、本科专业、正文涉及的院校及附件的公开范围，YAML 文件头可由维护者补充。</p>
-    <h2>投稿前请确认</h2>
-    <ol>
-      <li>默认一位投稿者提交一篇完整经验贴，夏令营、预推免等经历可以在同一篇文章中分章节叙述。</li>
-      <li>内容尽量清晰、简洁、有条理，分享亲身经历和对后来者有帮助的建议。</li>
-      <li>请遵循投稿模板，Markdown 正文使用标准的标题、列表和图片格式，确保内容易读。</li>
-      <li>可以使用真实姓名、昵称或匿名，不要求提交学号、精确排名或私人联系方式。</li>
-      <li>封面图片可选；没有图片时由维护者选择统一封面。</li>
-      <li>图片和附件请说明是否允许公开，未脱敏材料不要发送到公开仓库。</li>
-      <li>维护者会补充 YAML 元数据、检查链接和图片，再决定是否发布。</li>
-    </ol>
-    <h2>通过 PR 投稿</h2>
-    <ol>
-      <li>Fork <a href="https://github.com/JNU-CS-BAOYAN/CS2026">项目仓库</a>，在自己的仓库中创建分支。</li>
-      <li>将文章保存为 <code>src/content/experiences/申请年份/文章ID/index.md</code>，例如 <code>src/content/experiences/2026/xiaojiang/index.md</code>。文章 ID 请使用不重复的英文或数字名称。</li>
-      <li>将封面和正文图片放在文章的同一文件夹，并在 Markdown 开头补充下面的 YAML。年份应与目录一致；本科专业与院校按实际经历填写，不明确的信息可以省略。有封面时再添加 <code>cover: "./cover.jpg"</code>。</li>
-      <li>提交修改后，向原仓库的 <code>main</code> 分支<a href="https://github.com/JNU-CS-BAOYAN/CS2026/compare">发起 PR</a>，说明文章年份、署名及附件的公开范围。</li>
-    </ol>
-    <pre><code>{`---
-title: "我的保研经历"
-author: "小江"
-applicationYear: 2026
-undergraduateMajor: "人工智能"
-institutions:
-  - "北京航空航天大学"
-  - "东南大学"
-publishedAt: 2026-10-11
-draft: false
----`}</code></pre>
-    <p>投稿由维护者审核。合并到 main 后，网站会自动检查、构建并部署；提交 PR 或审核通过本身不会发布文章。没有封面时，维护者会从项目图片池中选择一张。</p>
-    <p><code>publishedAt</code> 是本站首次发布时间，由维护者发布前核对，不是申请年份或原文在其他平台的发表时间。本科专业和涉及院校会展示在卡片中，并用于搜索；院校建议填写完整名称，卡片会对常见院校使用简称。</p>
-    <h2>文章元数据</h2>
-    <p>必需字段为 <code>title</code>（标题）、<code>author</code>（署名，可填写“匿名”）和 <code>applicationYear</code>（申请年份）。其余可选字段为 <code>undergraduateMajor</code>（本科专业）、<code>institutions</code>（涉及院校列表）、<code>summary</code>（简介）、<code>cover</code>（封面）、<code>sourceUrl</code>（原始出处）、<code>publishedAt</code>（本站首次发布时间）和 <code>finalDestination</code>（最终去向）。</p>
-    <p>本站专门收录江南大学同学的经历，本科院校无需另填。涉及院校记录申请经历，最终去向记录最后的选择；两者分别填写。本科专业不明确时可以留空，<code>draft</code> 和图片替代文字 <code>coverAlt</code> 可由维护者处理。</p>
-    <p>如希望出现在贡献者列表，可一并提供 GitHub 个人主页链接，头像由维护者补充。更正、撤下或其他问题可通过<a href={`mailto:${SUBMISSION_EMAIL}`}>邮箱</a>或 <a href="https://github.com/JNU-CS-BAOYAN/CS2026/issues">Issue</a> 联系。</p>
-  </section>
+  <SubmissionTools />
+  <div class="prose submission-guide"><Content /></div>
 </SiteLayout>
-
-<script>
-  const downloadLink = document.querySelector<HTMLAnchorElement>('[data-template-download]');
-  const source = document.querySelector<HTMLElement>('[data-template-source]');
-  const copyButton = document.querySelector<HTMLButtonElement>('[data-copy-template]');
-  const status = document.querySelector<HTMLElement>('[data-template-status]');
-  const preview = document.querySelector<HTMLDetailsElement>('[data-template-preview]');
-
-  downloadLink?.addEventListener('click', (event) => {
-    if (event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey || !source) return;
-    event.preventDefault();
-    const url = URL.createObjectURL(new Blob([source.textContent ?? ''], { type: 'text/markdown;charset=utf-8' }));
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = downloadLink.download;
-    document.body.append(link);
-    link.click();
-    link.remove();
-    window.setTimeout(() => URL.revokeObjectURL(url), 10000);
-    if (status) status.textContent = '已发起 .md 文件下载；也可以展开模板内容，复制后保存。';
-  });
-
-  if (copyButton) copyButton.hidden = false;
-  copyButton?.addEventListener('click', async () => {
-    if (!source || !status) return;
-    try {
-      await navigator.clipboard.writeText(source.textContent ?? '');
-      status.textContent = '模板已复制，请粘贴到编辑器并保存为 .md 文件。';
-    } catch {
-      if (preview) preview.open = true;
-      const range = document.createRange();
-      range.selectNodeContents(source);
-      const selection = window.getSelection();
-      selection?.removeAllRanges();
-      selection?.addRange(range);
-      status.textContent = '模板已选中，请按 Ctrl+C 或 Command+C 复制。';
-    }
-  });
-</script>
-

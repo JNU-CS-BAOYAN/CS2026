@@ -1,5 +1,6 @@
 ---
 title: "关于"
+heading: "关于 JNU CS BAOYAN"
 description: "JNU CS BAOYAN 项目的范围、来源和维护说明。"
 ---
 

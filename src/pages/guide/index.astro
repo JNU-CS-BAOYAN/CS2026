@@ -1,17 +1,8 @@
 ---
-import { getEntry, render } from 'astro:content';
-import SiteLayout from '../../layouts/SiteLayout.astro';
+import { getEntry } from 'astro:content';
+import ContentPage from '../../components/ContentPage.astro';
 
 const entry = await getEntry('pages', 'guide');
 if (!entry) throw new Error('Missing guide page');
-const { Content } = await render(entry);
 ---
-<SiteLayout title="保研流程" description="保研准备时间线与流程说明。">
-  <header class="page-title">
-    <p class="eyebrow">GUIDE</p>
-    <h1>保研流程</h1>
-    <p>沿用原项目的时间线，帮助你安排准备节奏。</p>
-  </header>
-  <div class="prose"><Content /></div>
-</SiteLayout>
-
+<ContentPage entry={entry} eyebrow="GUIDE" />

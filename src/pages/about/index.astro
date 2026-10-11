@@ -1,16 +1,8 @@
 ---
-import { getEntry, render } from 'astro:content';
-import SiteLayout from '../../layouts/SiteLayout.astro';
+import { getEntry } from 'astro:content';
+import ContentPage from '../../components/ContentPage.astro';
 
 const entry = await getEntry('pages', 'about');
 if (!entry) throw new Error('Missing about page');
-const { Content } = await render(entry);
 ---
-<SiteLayout title="关于">
-  <header class="page-title">
-    <p class="eyebrow">ABOUT</p>
-    <h1>关于 JNU CS BAOYAN</h1>
-  </header>
-  <div class="prose"><Content /></div>
-</SiteLayout>
-
+<ContentPage entry={entry} eyebrow="ABOUT" />

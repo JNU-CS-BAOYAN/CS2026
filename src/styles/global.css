@@ -156,6 +156,7 @@ h1 { margin: 0 0 1.2rem; font-size: clamp(2rem, 4.5vw, 3.8rem); letter-spacing: 
 h2 { margin: 0 0 1rem; font-size: clamp(1.5rem, 2.5vw, 2.15rem); letter-spacing: -.02em; }
 h3 { margin: 0; font-size: 1.1rem; }
 .hero-lead { max-width: 620px; margin: 0 0 1.6rem; color: var(--muted); font-size: 1.18rem; }
+.hero-lead p { margin: 0; }
 .hero-actions, .button-row { display: flex; flex-wrap: wrap; gap: .75rem; align-items: center; }
 .button, .button-secondary {
   display: inline-flex;
@@ -264,7 +265,7 @@ h3 { margin: 0; font-size: 1.1rem; }
 .card-body h3 a { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; color: var(--text); text-decoration: none; }
 .card-body h3 a:hover { color: var(--accent-deep); }
 .card-summary { overflow: hidden; flex: none; white-space: nowrap; text-overflow: ellipsis; margin: 0; color: var(--muted); font-size: .86rem; line-height: 1.55; }
-.card-metadata { display: grid; flex: none; gap: .25rem; }
+.card-metadata { display: grid; flex: none; gap: .5rem; }
 .card-major { margin: 0; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; font-size: .82rem; line-height: 1.5; }
 .card-major a { color: var(--muted); text-decoration: none; }
 .card-major a:hover { color: var(--accent-deep); }
@@ -321,6 +322,7 @@ h3 { margin: 0; font-size: 1.1rem; }
 .template-preview { margin-top: 1.5rem; }
 .template-preview summary { cursor: pointer; font-weight: 700; }
 .template-preview pre { max-height: 26rem; overflow: auto; }
+.submission-guide { margin-top: 3rem; }
 .back-link { display: inline-block; margin-bottom: 1.5rem; font-weight: 700; text-decoration: none; }
 .article-layout-grid { display: grid; grid-template-columns: minmax(180px, 1fr) minmax(0, var(--prose-width)) minmax(180px, 1fr); gap: clamp(1.5rem, 2.5vw, 2.5rem); align-items: start; }
 .article-layout-grid > .article-toc { grid-column: 1; grid-row: 1; }

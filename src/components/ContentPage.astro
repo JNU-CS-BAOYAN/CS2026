@@ -1,0 +1,19 @@
+---
+import { render, type CollectionEntry } from 'astro:content';
+import SiteLayout from '../layouts/SiteLayout.astro';
+
+interface Props {
+  entry: CollectionEntry<'pages'>;
+  eyebrow?: string;
+}
+const { entry, eyebrow } = Astro.props;
+const { Content } = await render(entry);
+---
+<SiteLayout title={entry.data.title} description={entry.data.description}>
+  <header class="page-title">
+    {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+    <h1>{entry.data.heading ?? entry.data.title}</h1>
+    {entry.data.intro && <p>{entry.data.intro}</p>}
+  </header>
+  <div class="prose"><Content /></div>
+</SiteLayout>

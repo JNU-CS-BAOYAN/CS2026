@@ -63,7 +63,22 @@ draft: false
 
 本科院校固定为江南大学，不另设字段。`institutions` 指文章中的申请院校，不等于最终去向。`draft`（默认 false）仅控制是否公开，`coverAlt` 是可选的图片替代文字，这两项保留为维护选项，不要求投稿者填写。
 
-首页说明、流程、资料和关于页面位于 `src/content/pages/`。“最前面的话”以首页横向卡片展示，点击后进入独立文章页；经验列表和年份列表均提供页码导航。投稿模板位于：
+网站的介绍与说明文案统一位于 `src/content/pages/`：
+
+| 页面 | 编辑文件 |
+| --- | --- |
+| 首页主标题和介绍 | `home.md` |
+| 启航絮语 | `foreword.md` |
+| 投稿说明与元数据指南 | `submit.md` |
+| 保研流程 | `guide.md` |
+| 资料与工具 | `resources.md` |
+| 关于 | `about.md` |
+
+页面 YAML 的 `title` 为页面名称，`heading` 可覆盖页面上的主标题，`intro` 是页首引导文字，`description` 为页面描述；正文使用 Markdown。`home.md` 的正文是首页介绍。“启航絮语”的栏目名自动读取 `foreword.md` 的标题。
+
+Astro 负责布局、经验列表、分页、目录、搜索和交互。投稿下载/复制控件独立在 `src/components/SubmissionTools.astro`，邮箱卡片读取 `src/consts.ts` 的 `SUBMISSION_EMAIL`；投稿说明正文中的邮箱在 `submit.md` 中维护。搜索、404 等功能提示仍由对应组件或页面维护。
+
+“启航絮语”以首页横向卡片展示，点击进入独立文章页；经验列表和年份列表均提供页码导航。投稿正文模板（与网站的投稿说明不同）位于：
 
 - `public/templates/submission-template.md`
 - `public/templates/submission-template.docx`

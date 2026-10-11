@@ -1,12 +1,15 @@
 ---
 import { Image } from 'astro:assets';
-import { getCollection, getEntry } from 'astro:content';
+import { getCollection, getEntry, render } from 'astro:content';
 import ExperienceCard from '../components/ExperienceCard.astro';
 import SiteLayout from '../layouts/SiteLayout.astro';
 import { groupByYear, sortByPublishedAt } from '../lib/experiences';
 import forewordArt from '../assets/foreword.svg';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const home = await getEntry('pages', 'home');
+if (!home) throw new Error('Missing home page copy');
+const { Content: HomeContent } = await render(home);
 const experiences = await getCollection('experiences', ({ data }) => !data.draft);
 const sorted = sortByPublishedAt(experiences);
 const pageSize = 6;
@@ -16,15 +19,12 @@ const foreword = await getEntry('pages', 'foreword');
 const forewordSummary = foreword?.data.description ?? '项目说明、经验来源与投稿方式。';
 const forewordCover = foreword?.data.image ?? forewordArt;
 ---
-<SiteLayout>
+<SiteLayout title={home.data.title} description={home.data.description}>
   <section class="hero">
     <div class="hero-copy">
       <p class="eyebrow">JNU · CS · BAOYAN</p>
-      <h1 class="hero-title">愿你的准备，都有回响</h1>
-      <p class="hero-lead">
-        JNU CS BAOYAN 收集江南大学计算机相关专业的保研经验、准备资料和流程记录，
-        按申请年份整理，方便后来者从真实经历中找到自己的参考。
-      </p>
+      <h1 class="hero-title">{home.data.heading ?? home.data.title}</h1>
+      <div class="hero-lead"><HomeContent /></div>
       <div class="hero-actions">
         <a class="button" href={`${base}/experiences/`}>浏览经验贴</a>
         <a class="button-secondary" href={`${base}/submit/`}>分享一篇经验</a>
@@ -38,7 +38,7 @@ const forewordCover = foreword?.data.image ?? forewordArt;
   {foreword && (
     <section class="foreword" aria-labelledby="foreword-title">
       <div class="section-heading">
-        <h2 id="foreword-title"><span class="heading-icon" aria-hidden="true">✦</span> 启航絮语</h2>
+        <h2 id="foreword-title"><span class="heading-icon" aria-hidden="true">✦</span> {foreword.data.title}</h2>
         <a href={`${base}/foreword/`}>阅读全文 →</a>
       </div>
       <a class="foreword-card" href={`${base}/foreword/`}>
@@ -48,7 +48,7 @@ const forewordCover = foreword?.data.image ?? forewordArt;
           </span>
           <span class="foreword-card-body">
             <span class="eyebrow">PROJECT NOTE</span>
-            <span class="foreword-card-title">愿你的准备，都有回响</span>
+            <span class="foreword-card-title">{home.data.heading ?? home.data.title}</span>
             <span class="foreword-card-description">{forewordSummary}</span>
             <span class="read-link">进入文章 <span aria-hidden="true">→</span></span>
           </span>

@@ -1,17 +1,8 @@
 ---
-import { getEntry, render } from 'astro:content';
-import SiteLayout from '../../layouts/SiteLayout.astro';
+import { getEntry } from 'astro:content';
+import ContentPage from '../../components/ContentPage.astro';
 
 const entry = await getEntry('pages', 'resources');
 if (!entry) throw new Error('Missing resources page');
-const { Content } = await render(entry);
 ---
-<SiteLayout title="资料与工具" description="保研准备资料、工具和经验整理。">
-  <header class="page-title">
-    <p class="eyebrow">RESOURCES</p>
-    <h1>资料与工具</h1>
-    <p>把准备过程里常用的资料和工具集中放在这里。</p>
-  </header>
-  <div class="prose"><Content /></div>
-</SiteLayout>
-
+<ContentPage entry={entry} eyebrow="RESOURCES" />
