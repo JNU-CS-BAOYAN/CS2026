@@ -18,8 +18,10 @@ interface Heading {
 interface Props {
   entry: ExperienceEntry;
   headings?: Heading[];
+  previous?: { title: string; href: string };
+  next?: { title: string; href: string };
 }
-const { entry } = Astro.props;
+const { entry, previous, next } = Astro.props;
 const { headings = [] } = Astro.props;
 const data = entry.data;
 const cover = data.cover ?? pooledCover(entry.id);
@@ -50,7 +52,31 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
           <div class="prose"><slot /></div>
         </article>
       </div>
-      <nav class="article-end-nav" aria-label="文章导航">
+      <nav class="article-neighbor-nav" aria-label="上一篇和下一篇">
+        {previous ? (
+          <a class="article-neighbor-link" href={previous.href} rel="prev" title={previous.title}>
+            <span class="article-neighbor-label">← 上一篇</span>
+            <span class="article-neighbor-title">{previous.title}</span>
+          </a>
+        ) : (
+          <div class="article-neighbor-link is-disabled" aria-disabled="true">
+            <span class="article-neighbor-label">上一篇</span>
+            <span class="article-neighbor-title">已经是第一篇</span>
+          </div>
+        )}
+        {next ? (
+          <a class="article-neighbor-link" href={next.href} rel="next" title={next.title}>
+            <span class="article-neighbor-label">下一篇 →</span>
+            <span class="article-neighbor-title">{next.title}</span>
+          </a>
+        ) : (
+          <div class="article-neighbor-link is-disabled" aria-disabled="true">
+            <span class="article-neighbor-label">下一篇</span>
+            <span class="article-neighbor-title">已经是最后一篇</span>
+          </div>
+        )}
+      </nav>
+      <nav class="article-end-nav" aria-label="浏览经验归档">
         <a href={`${base}/experiences/${data.applicationYear}/`}>浏览 {data.applicationYear} 年经验贴</a>
         <a href={`${base}/experiences/`}>查看全部经验贴</a>
       </nav>

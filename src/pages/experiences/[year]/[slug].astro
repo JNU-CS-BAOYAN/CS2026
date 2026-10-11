@@ -1,18 +1,27 @@
 ---
 import { render } from 'astro:content';
 import ArticleLayout from '../../../layouts/ArticleLayout.astro';
-import { getExperiences, experienceSlug, sortExperiences, type ExperienceEntry } from '../../../lib/experiences';
+import { getExperiences, experiencePath, experienceSlug, sortExperiences, type ExperienceEntry } from '../../../lib/experiences';
+
+interface ArticleLink {
+  title: string;
+  href: string;
+}
 
 export async function getStaticPaths() {
   const experiences = await getExperiences();
-  return sortExperiences(experiences).map((entry) => ({
+  const sorted = sortExperiences(experiences);
+  const linkFor = (entry: ExperienceEntry | undefined): ArticleLink | undefined => entry
+    ? { title: entry.data.title, href: experiencePath(entry) }
+    : undefined;
+  return sorted.map((entry, index) => ({
     params: { year: String(entry.data.applicationYear), slug: experienceSlug(entry) },
-    props: { entry },
+    props: { entry, previous: linkFor(sorted[index - 1]), next: linkFor(sorted[index + 1]) },
   }));
 }
 
-const { entry } = Astro.props as { entry: ExperienceEntry };
+const { entry, previous, next } = Astro.props as { entry: ExperienceEntry; previous?: ArticleLink; next?: ArticleLink };
 const { Content, headings } = await render(entry);
 ---
-<ArticleLayout entry={entry} headings={headings}><Content /></ArticleLayout>
+<ArticleLayout entry={entry} headings={headings} previous={previous} next={next}><Content /></ArticleLayout>
 

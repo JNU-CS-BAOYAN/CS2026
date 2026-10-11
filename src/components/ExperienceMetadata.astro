@@ -6,20 +6,15 @@ interface Props {
   undergraduateMajor?: string;
   institutions: string[];
   compact?: boolean;
-  articlePath?: string;
 }
-const { undergraduateMajor, institutions, compact = false, articlePath } = Astro.props;
-const visible = compact ? institutions.slice(0, 3) : institutions;
+const { undergraduateMajor, institutions, compact = false } = Astro.props;
 const searchPath = (query: string) => `${sitePath('/search/')}?q=${encodeURIComponent(query)}`;
 ---
 {compact ? (
   <div class="card-metadata">
     {institutions.length > 0 && (
       <div class="institution-tags" aria-label="涉及院校">
-        {visible.map((name) => <a class="institution-tag" href={searchPath(name)} title={name} aria-label={`搜索院校：${name}`}>{institutionDisplayName(name)}</a>)}
-        {institutions.length > visible.length && articlePath && (
-          <a class="institution-tag metadata-more" href={articlePath} title={institutions.slice(visible.length).join('、')} aria-label={`查看本文全部 ${institutions.length} 所院校`}>+{institutions.length - visible.length}</a>
-        )}
+        {institutions.map((name) => <a class="institution-tag" href={searchPath(name)} title={name} aria-label={`搜索院校：${name}`}>{institutionDisplayName(name)}</a>)}
       </div>
     )}
     {undergraduateMajor && <p class="card-major"><a href={searchPath(undergraduateMajor)} title={`本科专业：${undergraduateMajor}`}><span class="sr-only">本科专业：</span>{undergraduateMajor}</a></p>}

@@ -18,7 +18,7 @@ const cover = entry.data.cover ?? pooledCover(entry.id);
   <div class="card-body">
     <p class="eyebrow">{entry.data.applicationYear} · {entry.data.author}</p>
     <h3><a href={experiencePath(entry)} title={entry.data.title}>{entry.data.title}</a></h3>
-    <ExperienceMetadata undergraduateMajor={entry.data.undergraduateMajor} institutions={entry.data.institutions} compact articlePath={experiencePath(entry)} />
+    <ExperienceMetadata undergraduateMajor={entry.data.undergraduateMajor} institutions={entry.data.institutions} compact />
     <a class="read-link" href={experiencePath(entry)}>阅读全文 <span aria-hidden="true">→</span></a>
   </div>
 </article>
