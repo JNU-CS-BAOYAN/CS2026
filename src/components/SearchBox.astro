@@ -15,7 +15,7 @@ const records = entries.map((entry) => ({
   undergraduateMajor: entry.data.undergraduateMajor ?? '',
   institutions: entry.data.institutions.map(institutionDisplayName),
   institutionKeywords: institutionSearchText(entry.data.institutions),
-  text: entry.body ?? '',
+  text: (entry.body ?? '').replace(/<!--[\s\S]*?-->/g, ''),
   path: experiencePath(entry),
 }));
 const serialized = JSON.stringify(records).replace(/</g, '\\u003c');
