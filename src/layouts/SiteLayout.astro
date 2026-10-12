@@ -8,13 +8,14 @@ interface Props {
   title?: string;
   description?: string;
   wide?: boolean;
+  fontPreloadText?: string;
 }
-const { title = SITE_TITLE, description = SITE_DESCRIPTION, wide = false } = Astro.props;
+const { title = SITE_TITLE, description = SITE_DESCRIPTION, wide = false, fontPreloadText } = Astro.props;
 ---
 <!doctype html>
 <html lang="zh-CN">
   <head>
-    <BaseHead title={title} description={description} />
+    <BaseHead title={title} description={description} fontPreloadText={fontPreloadText} />
   </head>
   <body>
     <Header />

@@ -1,6 +1,6 @@
 ---
 title: "启航絮语"
-description: "JNU CS BAOYAN"
+description: "这里记录同学们的准备、申请与选择，希望这些走过的路，能给后来的人一点参考和陪伴。"
 image: "./foreword-cover.jpg"
 ---
 

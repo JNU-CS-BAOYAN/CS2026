@@ -1,13 +1,17 @@
 ---
+import 'lxgw-wenkai-webfont/lxgwwenkai-bold.css';
 import '../styles/global.css';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import { titleFontPreloads } from '../lib/font-preloads';
 
 interface Props {
   title?: string;
   description?: string;
+  fontPreloadText?: string;
 }
 
-const { title = SITE_TITLE, description = SITE_DESCRIPTION } = Astro.props;
+const { title = SITE_TITLE, description = SITE_DESCRIPTION, fontPreloadText = title } = Astro.props;
+const fontPreloads = titleFontPreloads(fontPreloadText);
 // Astro emits the error page as 404.html, rather than a /404/ directory.
 const canonicalPath = Astro.url.pathname.replace(/\/404\/?$/, '/404.html');
 const canonicalURL = new URL(canonicalPath, Astro.site);
@@ -16,11 +20,15 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
+{fontPreloads.map(({ href, type }) => <link rel="preload" href={href} as="font" type={type} crossorigin="anonymous" />)}
 <script is:inline>
+  let storedTheme;
   try {
-    const theme = localStorage.getItem('jnu-cs-baoyan-theme');
-    if (theme === 'dark' || theme === 'light') document.documentElement.dataset.theme = theme;
+    storedTheme = localStorage.getItem('jnu-cs-baoyan-theme');
   } catch {}
+  document.documentElement.dataset.theme = storedTheme === 'dark' || storedTheme === 'light'
+    ? storedTheme
+    : (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
 </script>
 <link rel="icon" type="image/png" sizes="64x64" href={`${base}/favicon.png`} />
 <link rel="icon" type="image/svg+xml" href={`${base}/favicon.svg`} />

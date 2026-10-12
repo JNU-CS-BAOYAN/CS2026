@@ -56,3 +56,16 @@ export function institutionDisplayName(name: string) {
 export function institutionSearchText(names: string[]) {
   return names.map((name) => `${name} ${shortNames[name] ?? ''}`).join(' ');
 }
+
+/** Preserve YAML order; always show the first name, even if it exceeds the budget. */
+export function visibleInstitutions(list: string[]): string[] {
+  const visible: string[] = [];
+  let characters = 0;
+  for (const name of list) {
+    const length = [...name].length;
+    if (visible.length >= 3 || (visible.length > 0 && characters + length > 15)) break;
+    visible.push(name);
+    characters += length;
+  }
+  return visible;
+}

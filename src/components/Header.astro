@@ -43,10 +43,13 @@ const hrefFor = (path: string) => `${base}${path}`;
 <script>
   const root = document.documentElement;
   const toggle = document.querySelector<HTMLButtonElement>('[data-theme-toggle]');
+  let storedTheme: string | null = null;
   try {
-    const storedTheme = localStorage.getItem('jnu-cs-baoyan-theme');
-    if (storedTheme === 'dark' || storedTheme === 'light') root.dataset.theme = storedTheme;
+    storedTheme = localStorage.getItem('jnu-cs-baoyan-theme');
   } catch {}
+  root.dataset.theme = storedTheme === 'dark' || storedTheme === 'light'
+    ? storedTheme
+    : (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
   const updateThemeButton = () => {
     const dark = root.dataset.theme === 'dark';
     if (toggle) {

@@ -1,37 +1,19 @@
 ---
-interface Heading {
-  depth: number;
-  slug: string;
-  text: string;
-}
+import { tableOfContents, type TocHeading } from '../lib/table-of-contents';
 
-interface Props {
-  headings?: Heading[];
-}
-
+interface Props { headings?: TocHeading[]; }
 const { headings = [] } = Astro.props;
-const sections: Array<{ heading: Heading; children: Heading[] }> = [];
-for (const heading of headings) {
-  if (heading.depth === 2) sections.push({ heading, children: [] });
-  else if (heading.depth === 3 && sections.length) sections.at(-1)?.children.push(heading);
-}
+const items = tableOfContents(headings);
 ---
 
-{sections.length > 0 && (
+{items.length > 0 && (
   <aside class="article-toc" aria-label="文章目录" data-toc>
     <p class="article-toc-title">目录</p>
-    <nav>
+    <nav aria-label="正文标题">
       <ul>
-        {sections.map(({ heading, children }) => (
-          <li class="toc-section" data-toc-section data-toc-slug={heading.slug}>
-            <a class="toc-level-2" href={`#${heading.slug}`}>{heading.text}</a>
-            {children.length > 0 && (
-              <ul class="toc-children">
-                {children.map((child) => (
-                  <li><a href={`#${child.slug}`}>{child.text}</a></li>
-                ))}
-              </ul>
-            )}
+        {items.map((item) => (
+          <li class="toc-item" data-toc-item data-toc-slug={item.slug} data-toc-depth={item.depth} data-toc-parents={JSON.stringify(item.parents)} style={`--toc-indent: ${item.parents.length * .65}rem`}>
+            <a class="toc-link" href={`#${item.slug}`}>{item.text}</a>
           </li>
         ))}
       </ul>
@@ -42,20 +24,73 @@ for (const heading of headings) {
 <script>
   const toc = document.querySelector<HTMLElement>('[data-toc]');
   if (toc) {
-    const sections = Array.from(toc.querySelectorAll<HTMLElement>('[data-toc-section]'));
-    const activate = (slug: string) => {
-      sections.forEach((section) => section.classList.toggle('is-active', section.dataset.tocSlug === slug));
+    const candidates = Array.from(toc.querySelectorAll<HTMLElement>('[data-toc-item]')).map((item) => ({
+      item,
+      link: item.querySelector<HTMLAnchorElement>('a')!,
+      target: document.getElementById(item.dataset.tocSlug ?? ''),
+      parents: JSON.parse(item.dataset.tocParents ?? '[]') as string[],
+    }));
+    // Historical leading H1 duplicates are hidden by the article stylesheet.
+    // Keep all visible headings and promote children of the hidden title.
+    const entries = candidates.filter(({ item, target }) => {
+      const visible = target && getComputedStyle(target).display !== 'none';
+      item.hidden = !visible;
+      return visible;
+    });
+    const visibleSlugs = new Set(entries.map(({ target }) => target!.id));
+    entries.forEach((entry) => {
+      entry.parents = entry.parents.filter((slug) => visibleSlugs.has(slug));
+      entry.item.style.setProperty('--toc-indent', `${entry.parents.length * .65}rem`);
+    });
+    let currentSlug: string | undefined;
+    const activate = (slug?: string) => {
+      if (currentSlug === slug) return;
+      currentSlug = slug;
+      const current = entries.find(({ target }) => target!.id === slug);
+      const branch = new Set(current ? [...current.parents, slug!] : []);
+      entries.forEach(({ item, link, target, parents }) => {
+        item.hidden = parents.length > 0 && !branch.has(parents.at(-1)!);
+        item.classList.toggle('is-active', target!.id === slug);
+        item.classList.toggle('is-ancestor', target!.id !== slug && branch.has(target!.id));
+        if (target!.id === slug) link.setAttribute('aria-current', 'location');
+        else link.removeAttribute('aria-current');
+      });
+      if (current && getComputedStyle(toc).position === 'sticky') {
+        const box = toc.getBoundingClientRect();
+        const link = current.link.getBoundingClientRect();
+        if (link.top < box.top) toc.scrollTop += link.top - box.top - 8;
+        else if (link.bottom > box.bottom) toc.scrollTop += link.bottom - box.bottom + 8;
+      }
     };
-    const targets = sections
-      .map((section) => document.getElementById(section.dataset.tocSlug ?? ''))
-      .filter((heading): heading is HTMLElement => Boolean(heading));
-    if (targets.length) {
-      const observer = new IntersectionObserver((entries) => {
-        const visible = entries.filter((entry) => entry.isIntersecting).sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
-        if (visible[0]?.target.id) activate(visible[0].target.id);
-      }, { rootMargin: '-12% 0px -72% 0px', threshold: 0 });
-      targets.forEach((heading) => observer.observe(heading));
-    }
-    sections.forEach((section) => section.querySelector('a')?.addEventListener('click', () => activate(section.dataset.tocSlug ?? '')));
+    // Without JavaScript, every level remains an ordinary usable link.
+    entries.forEach(({ item, parents }) => { item.hidden = parents.length > 0; });
+    const update = () => {
+      const first = entries[0]?.target;
+      const offset = first ? parseFloat(getComputedStyle(first).scrollMarginTop) || 136 : 136;
+      let active: string | undefined;
+      for (const { target } of entries) {
+        if (target!.getBoundingClientRect().top > offset + 2) break;
+        active = target!.id;
+      }
+      // A short final section may not be able to reach the top reading line.
+      if (window.scrollY > 0 && window.scrollY + innerHeight >= document.documentElement.scrollHeight - 2) {
+        active = entries.at(-1)?.target?.id;
+      }
+      activate(active);
+    };
+    let scheduled = false;
+    const schedule = () => {
+      if (scheduled) return;
+      scheduled = true;
+      requestAnimationFrame(() => { scheduled = false; update(); });
+    };
+    entries.forEach(({ link, target }) => link.addEventListener('click', () => activate(target!.id)));
+    window.addEventListener('scroll', schedule, { passive: true });
+    window.addEventListener('resize', schedule);
+    window.addEventListener('hashchange', schedule);
+    const content = document.querySelector('.article .prose');
+    if (content) new ResizeObserver(schedule).observe(content);
+    document.fonts.ready.then(schedule);
+    update();
   }
 </script>

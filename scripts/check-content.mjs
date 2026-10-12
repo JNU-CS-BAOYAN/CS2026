@@ -67,8 +67,8 @@ export async function checkContent(root = process.cwd()) {
     if (!Number.isInteger(data.applicationYear) || data.applicationYear < 2000 || data.applicationYear > 2100) report('applicationYear 必须是 2000–2100 的整数。');
     if (String(data.applicationYear) !== parts[0]) report('applicationYear 与年份目录不一致。');
     if (!legacyArticles.has(path)) {
-      if (typeof data.author !== 'string' || !/^[a-z0-9-]+$/.test(data.author)) report('author 只允许小写英文字母、数字和连字符。');
-      if (data.author !== parts[1]) report('目录名必须与 author 完全相同。');
+      if (typeof data.author !== 'string' || !/^[A-Za-z0-9-]+$/.test(data.author)) report('author 只允许大小写英文字母、数字和连字符，不允许中文。');
+      if (data.author !== parts[1]) report('目录名必须与 author 完全相同，包括大小写。');
     }
     for (const key of ['undergraduateMajor', 'finalDestination', 'sourceUrl', 'cover']) {
       if (Object.hasOwn(data, key) && (typeof data[key] !== 'string' || !data[key].trim())) report(`${key} 已填写时必须是非空文字；不使用请删除该字段。`);

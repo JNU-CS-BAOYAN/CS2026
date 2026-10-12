@@ -1,4 +1,5 @@
 ---
+import 'lxgw-wenkai-screen-webfont/lxgwwenkaiscreen.css';
 import { Image } from 'astro:assets';
 import type { ExperienceEntry } from '../lib/experiences';
 import { experiencePath } from '../lib/experiences';
@@ -13,12 +14,12 @@ const cover = entry.data.cover ?? pooledCover(entry.id);
 ---
 <article class="experience-card">
   <a class="card-cover" href={experiencePath(entry)}>
-    <Image src={cover} alt={`${entry.data.title}封面`} width={720} height={405} />
+    <Image src={cover} alt={`${entry.data.title}封面`} width={720} height={405} widths={[400, 720]} sizes="(max-width: 650px) 100vw, (max-width: 900px) 50vw, 380px" />
   </a>
   <div class="card-body">
-    <p class="eyebrow">{entry.data.applicationYear} · {entry.data.author}</p>
+    <p class="card-meta">{entry.data.applicationYear} · {entry.data.author}</p>
     <h3><a href={experiencePath(entry)} title={entry.data.title}>{entry.data.title}</a></h3>
-    <ExperienceMetadata undergraduateMajor={entry.data.undergraduateMajor} institutions={entry.data.institutions} compact />
+    <ExperienceMetadata id={entry.id} undergraduateMajor={entry.data.undergraduateMajor} institutions={entry.data.institutions} compact />
     <a class="read-link" href={experiencePath(entry)}>阅读全文 <span aria-hidden="true">→</span></a>
   </div>
 </article>

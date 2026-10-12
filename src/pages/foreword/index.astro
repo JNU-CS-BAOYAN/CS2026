@@ -14,11 +14,10 @@ const cover = entry.data.image;
   <div class="article-layout-grid foreword-page">
     <TableOfContents headings={headings} />
     <article class="article">
-      {cover && <Image class="article-cover" src={cover} alt="项目介绍封面" width={1200} height={675} />}
+      {cover && <Image class="article-cover" src={cover} alt="项目介绍封面" width={1200} height={675} loading="eager" fetchpriority="high" />}
       <header class="article-header">
         <p class="eyebrow">PROJECT NOTE</p>
         <h1>{entry.data.title}</h1>
-        {entry.data.description && <p class="article-summary">{entry.data.description}</p>}
       </header>
       <div class="prose"><Content /></div>
     </article>

@@ -1,20 +1,36 @@
 ---
-import { institutionDisplayName } from '../lib/institutions';
+import { institutionDisplayName, visibleInstitutions } from '../lib/institutions';
 import { sitePath } from '../lib/experiences';
 
 interface Props {
+  id?: string;
   undergraduateMajor?: string;
   institutions: string[];
   compact?: boolean;
 }
-const { undergraduateMajor, institutions, compact = false } = Astro.props;
+const { id, undergraduateMajor, institutions, compact = false } = Astro.props;
+if (compact && !id) throw new Error('Compact experience metadata requires an article id');
+const visible = visibleInstitutions(institutions);
+const remaining = institutions.length - visible.length;
+const popId = `institutions-${encodeURIComponent(id ?? '')}`;
 const searchPath = (query: string) => `${sitePath('/search/')}?q=${encodeURIComponent(query)}`;
 ---
 {compact ? (
   <div class="card-metadata">
     {institutions.length > 0 && (
-      <div class="institution-tags" aria-label="涉及院校">
-        {institutions.map((name) => <a class="institution-tag" href={searchPath(name)} title={name} aria-label={`搜索院校：${name}`}>{institutionDisplayName(name)}</a>)}
+      <div class="institutions" data-institutions>
+        <div class="institution-tags" aria-label="涉及院校">
+          {visible.map((name) => <a class="institution-tag" href={searchPath(name)} title={name} aria-label={`搜索院校：${name}`}>{institutionDisplayName(name)}</a>)}
+          {remaining > 0 && <button class="institution-tag institution-more" type="button" aria-expanded="false" aria-controls={popId} aria-label={`查看全部 ${institutions.length} 所院校`}>+{remaining}</button>}
+        </div>
+        {remaining > 0 && (
+          <div class="institution-pop" id={popId} role="group" aria-label={`全部 ${institutions.length} 所院校`} hidden>
+            <p>涉及院校 {institutions.length} 所，点击可搜索</p>
+            <div class="institution-tags">
+              {institutions.map((name) => <a class="institution-tag" href={searchPath(name)} title={name} aria-label={`搜索院校：${name}`}>{institutionDisplayName(name)}</a>)}
+            </div>
+          </div>
+        )}
       </div>
     )}
     {undergraduateMajor && <p class="card-major"><a href={searchPath(undergraduateMajor)} title={`本科专业：${undergraduateMajor}`}><span class="sr-only">本科专业：</span>{undergraduateMajor}</a></p>}
@@ -32,3 +48,86 @@ const searchPath = (query: string) => `${sitePath('/search/')}?q=${encodeURIComp
     )}
   </dl>
 )}
+
+<script>
+  // One state controls both visibility and ARIA. CSS hover must not undo Escape.
+  const controls: Array<{ box: HTMLElement; close: (restoreFocus?: boolean) => void }> = [];
+  document.querySelectorAll<HTMLElement>('[data-institutions]').forEach((box) => {
+    const button = box.querySelector<HTMLButtonElement>('.institution-more');
+    const popup = box.querySelector<HTMLElement>('.institution-pop');
+    if (!button || !popup) return;
+    let pinned = false;
+    let hovered = false;
+    let dismissed = false;
+    let restoringFocus = false;
+    let timer: ReturnType<typeof setTimeout> | undefined;
+    const hasFocus = () => document.activeElement === button || popup.contains(document.activeElement);
+    const clearTimer = () => { clearTimeout(timer); };
+    const close = (restoreFocus = false) => {
+      clearTimer();
+      if (popup.hidden) return;
+      pinned = false;
+      dismissed = true;
+      box.classList.remove('is-open');
+      box.closest('.experience-card')?.classList.remove('has-open-institutions');
+      button.setAttribute('aria-expanded', 'false');
+      if (restoreFocus && popup.contains(document.activeElement)) {
+        restoringFocus = true;
+        button.focus({ preventScroll: true });
+        restoringFocus = false;
+      }
+      popup.hidden = true;
+    };
+    const open = () => {
+      clearTimer();
+      if (dismissed) return;
+      controls.forEach((control) => { if (control.box !== box) control.close(); });
+      popup.hidden = false;
+      box.classList.add('is-open');
+      box.closest('.experience-card')?.classList.add('has-open-institutions');
+      button.setAttribute('aria-expanded', 'true');
+    };
+    const leave = () => {
+      hovered = false;
+      clearTimer();
+      timer = setTimeout(() => {
+        if (!pinned && !hasFocus() && !hovered) { close(); dismissed = false; }
+      }, 180);
+    };
+    [button, popup].forEach((element) => {
+      element.addEventListener('pointerenter', (event) => {
+        if (event.pointerType !== 'mouse' || !matchMedia('(hover: hover)').matches) return;
+        hovered = true;
+        dismissed = false;
+        open();
+      });
+      element.addEventListener('pointerleave', leave);
+    });
+    box.addEventListener('focusin', (event) => {
+      if (!restoringFocus && (event.target === button || popup.contains(event.target as Node))) {
+        dismissed = false;
+        open();
+      }
+    });
+    box.addEventListener('focusout', () => {
+      // Wait for the browser to finish moving focus into the popup links.
+      setTimeout(() => {
+        if (!hasFocus()) {
+          dismissed = false;
+          if (!hovered && !pinned) { close(); dismissed = false; }
+        }
+      }, 0);
+    });
+    button.addEventListener('click', () => {
+      if (pinned) close();
+      else { dismissed = false; open(); pinned = true; }
+    });
+    controls.push({ box, close });
+  });
+  document.addEventListener('click', (event) => {
+    controls.forEach(({ box, close }) => { if (!box.contains(event.target as Node)) close(); });
+  });
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') controls.forEach(({ close }) => close(true));
+  });
+</script>

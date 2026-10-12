@@ -36,8 +36,19 @@ test('legacy authors are exempt by fixed path, but new historical submissions ar
   assert.deepEqual((await checkContent(root)).errors, []);
   await put(root, 'src/content/experiences/2025/new-author/index.md', article('中文署名', 2025));
   const errors = (await checkContent(root)).errors.join('\n');
-  assert.match(errors, /小写英文字母/);
+  assert.match(errors, /大小写英文字母/);
   assert.match(errors, /目录名必须/);
+});
+
+test('mixed-case English nickname passes only with the exact same folder name', async (t) => {
+  const root = await fixture(t);
+  const path = 'src/content/experiences/2026/KingBanana/index.md';
+  await put(root, path, article('KingBanana'));
+  assert.deepEqual((await checkContent(root)).errors, []);
+  await put(root, path, article('kingbanana'));
+  assert.match((await checkContent(root)).errors.join('\n'), /包括大小写/);
+  await put(root, path, article('中文昵称'));
+  assert.match((await checkContent(root)).errors.join('\n'), /不允许中文/);
 });
 
 test('year mismatch, nickname mismatch, unknown fields and missing covers fail together', async (t) => {

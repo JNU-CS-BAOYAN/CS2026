@@ -19,7 +19,7 @@ const foreword = await getEntry('pages', 'foreword');
 const forewordSummary = foreword?.data.description ?? '项目说明、经验来源与投稿方式。';
 const forewordCover = foreword?.data.image ?? forewordArt;
 ---
-<SiteLayout title={home.data.title} description={home.data.description}>
+<SiteLayout title={home.data.title} description={home.data.description} fontPreloadText={home.data.heading ?? home.data.title}>
   <section class="hero">
     <div class="hero-copy">
       <p class="eyebrow">JNU · CS · BAOYAN</p>
@@ -31,7 +31,7 @@ const forewordCover = foreword?.data.image ?? forewordArt;
       </div>
     </div>
     <div class="hero-art">
-      <Image src={forewordCover} alt="JNU CS BAOYAN 项目介绍封面" width={1200} height={650} />
+      <Image src={forewordCover} alt="JNU CS BAOYAN 项目介绍封面" width={1200} height={650} loading="eager" fetchpriority="high" />
     </div>
   </section>
 

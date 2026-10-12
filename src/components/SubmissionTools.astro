@@ -7,7 +7,7 @@ const { preview = false } = Astro.props;
 const markdownTemplate = readFileSync('public/templates/submission-template.md', 'utf8');
 ---
 <section class="submission-tools" aria-labelledby="submission-preparation">
-  <h2 id="submission-preparation">{preview ? '模板下载与预览' : '① 准备稿件'}</h2>
+  <h2 class="prose-heading" id="submission-preparation">{preview ? '模板下载与预览' : '① 准备稿件'}</h2>
   <div class="resource-card submission-template-card">
     <div class="submission-template-copy">
       <h3>下载投稿模板</h3>

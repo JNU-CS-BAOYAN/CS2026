@@ -42,7 +42,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
       <div class="article-layout-grid">
         <TableOfContents headings={headings} />
         <article class="article">
-          <Image class="article-cover" src={cover} alt={`${data.title}封面`} width={1200} height={675} />
+          <Image class="article-cover" src={cover} alt={`${data.title}封面`} width={1200} height={675} loading="eager" fetchpriority="high" />
           <header class="article-header">
             <p class="eyebrow">{data.applicationYear} · {data.author}</p>
             <h1 id="article-title">{data.title}</h1>
