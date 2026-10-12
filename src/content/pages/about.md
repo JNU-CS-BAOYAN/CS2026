@@ -20,13 +20,13 @@ JNU CS BAOYAN 面向江南大学计算机相关专业的同学，收集保研经
   <li>
     <a class="maintainer" href="https://github.com/kleinblue4" aria-label="2025 年维护者 Klein 的 GitHub 主页">
       <span class="maintainer-avatar" aria-hidden="true"><span>K</span><img src="https://github.com/kleinblue4.png?size=112" alt="" width="56" height="56" loading="lazy" onerror="this.remove()" /></span>
-      <span class="maintainer-info"><span class="maintainer-year">2025</span><strong class="maintainer-name">Klein</strong><span class="maintainer-role">原项目维护 · @kleinblue4</span></span>
+      <span class="maintainer-info"><span class="maintainer-year">2025</span><strong class="maintainer-name">Klein</strong><span class="maintainer-role">@kleinblue4</span></span>
     </a>
   </li>
   <li>
     <a class="maintainer" href="https://github.com/Ecankk" aria-label="2026 年维护者 Ecank 的 GitHub 主页">
       <span class="maintainer-avatar" aria-hidden="true"><span>E</span><img src="https://github.com/Ecankk.png?size=112" alt="" width="56" height="56" loading="lazy" onerror="this.remove()" /></span>
-      <span class="maintainer-info"><span class="maintainer-year">2026</span><strong class="maintainer-name">Ecank</strong><span class="maintainer-role">当前网站维护 · @Ecankk</span></span>
+      <span class="maintainer-info"><span class="maintainer-year">2026</span><strong class="maintainer-name">Ecank</strong><span class="maintainer-role">@Ecankk</span></span>
     </a>
   </li>
 </ul>
