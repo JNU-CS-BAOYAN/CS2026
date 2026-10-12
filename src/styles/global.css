@@ -329,7 +329,28 @@ h3 { margin: 0; font-size: 1.1rem; }
 }
 .resource-card h3 { margin-bottom: .45rem; }
 .resource-card p { margin: 0; color: var(--muted); font-size: .95rem; }
-.submission-tools { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.submission-page { max-width: var(--prose-width); margin-inline: auto; }
+.submission-page [hidden] { display: none !important; }
+.submission-tools h2 { margin: 0 0 1rem; font-size: 1.45rem; }
+.submission-template-card { display: flex; flex-wrap: wrap; align-items: center; gap: 1.2rem 2rem; }
+.submission-template-copy { flex: 1 1 20rem; }
+.submission-template-copy h3 { margin: 0 0 .45rem; font-size: 1.15rem; }
+.submission-template-card .button-row { flex: 0 1 auto; }
+.submission-template-card .button, .submission-template-card .button-secondary { text-decoration: none; }
+.submission-methods { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+.submission-method-card { display: flex; flex-direction: column; min-width: 0; }
+.submission-method-card h3 { margin-top: 0; font-size: 1.15rem; }
+.submission-recommended { display: inline-block; margin-left: .3rem; padding: .05rem .45rem; border-radius: 999px; background: var(--surface-soft); color: var(--accent-deep); font-size: .78rem; vertical-align: middle; }
+.submission-method-card ol { margin: .5rem 0 .8rem; padding-left: 1.4rem; }
+.submission-method-card li + li { margin-top: .35rem; }
+.submission-method-card .submission-method-note { margin: 0 0 1rem; }
+.submission-method-card .submission-method-actions { margin-top: auto; }
+.submission-method-actions button { font-family: inherit; font-size: inherit; border: 0; cursor: pointer; }
+.submission-method-actions .button { text-decoration: none; }
+.submission-status { color: var(--muted); font-size: .9rem; }
+.submission-method-card .submission-status { margin-top: .5rem; }
+.submission-overview > h2 { margin-top: 2rem; }
+.submission-overview { margin-top: 1.8rem; }
 .template-preview { margin-top: 1.5rem; }
 .template-preview summary { cursor: pointer; font-weight: 700; }
 .template-preview pre { max-height: 26rem; overflow: auto; }
@@ -457,6 +478,7 @@ a.article-neighbor-link:hover { border-color: var(--accent); color: var(--accent
   .foreword-card-body { padding: .2rem .2rem .5rem; }
   .pagination { align-items: flex-start; flex-direction: column; }
   .experience-grid, .resource-grid, .link-grid { grid-template-columns: 1fr; }
+  .submission-methods { grid-template-columns: 1fr; }
   .article-end-nav { flex-direction: column; }
   .article-neighbor-nav { grid-template-columns: 1fr; }
 }

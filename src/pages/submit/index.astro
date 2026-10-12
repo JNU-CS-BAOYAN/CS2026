@@ -8,11 +8,13 @@ if (!entry) throw new Error('Missing submission page');
 const { Content } = await render(entry);
 ---
 <SiteLayout title={entry.data.title} description={entry.data.description}>
-  <header class="page-title">
-    <p class="eyebrow">SUBMIT</p>
-    <h1>{entry.data.heading ?? entry.data.title}</h1>
-    {entry.data.intro && <p>{entry.data.intro}</p>}
-  </header>
-  <SubmissionTools />
-  <div class="prose submission-guide"><Content /></div>
+  <div class="submission-page">
+    <header class="page-title">
+      <p class="eyebrow">SUBMIT</p>
+      <h1>{entry.data.heading ?? entry.data.title}</h1>
+      {entry.data.intro && <p>{entry.data.intro}</p>}
+    </header>
+    <SubmissionTools />
+    <div class="prose submission-overview"><Content /></div>
+  </div>
 </SiteLayout>

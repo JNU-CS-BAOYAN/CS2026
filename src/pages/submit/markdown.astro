@@ -1,0 +1,22 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import SubmissionTools from '../../components/SubmissionTools.astro';
+import { sitePath } from '../../lib/experiences';
+import { getEntry, render } from 'astro:content';
+
+const entry = await getEntry('pages', 'markdown-guide');
+if (!entry) throw new Error('Missing Markdown writing guide');
+const { Content } = await render(entry);
+---
+<SiteLayout title={entry.data.title} description={entry.data.description}>
+  <div class="submission-page">
+    <a class="back-link" href={sitePath('/submit/')}>返回投稿</a>
+    <header class="page-title">
+      <h1>{entry.data.heading ?? entry.data.title}</h1>
+      {entry.data.intro && <p>{entry.data.intro}</p>}
+    </header>
+    <SubmissionTools preview />
+    <div class="prose submission-guide"><Content /></div>
+    <a class="back-link" href={sitePath('/submit/')}>返回投稿，提交稿件</a>
+  </div>
+</SiteLayout>

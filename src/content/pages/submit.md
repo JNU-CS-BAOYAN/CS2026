@@ -1,189 +1,44 @@
 ---
 title: "投稿"
 heading: "分享一篇经验"
-description: "使用 Markdown 模板，提交完整经验贴文件夹。"
-intro: "欢迎写下一篇完整的保研经历。推荐通过 PR 投稿，也可以将同一份 Markdown 投稿文件夹发送到邮箱；投稿由维护者审核后发布。"
+description: "准备一篇保研经历，通过 GitHub PR 或邮箱投稿，审核后发布。"
+intro: "把你的经历留下，给后来者一点参考和陪伴。推荐通过 PR 投稿，也欢迎发到邮箱。"
 ---
 
-## 通过 PR 投稿（当前为 2026 年）
-
-1. 下载上方 Markdown 模板，将文件保存为 `index.md`，填写 YAML 中的必填字段和正文。可选字段不用填写时，保留注释或删除即可；初次使用可先阅读下方的 [Markdown 写作说明](#markdown-写作说明)。
-2. Fork [项目仓库](https://github.com/JNU-CS-BAOYAN/CS2026)，在自己的仓库中创建分支。
-3. **当前新稿统一放在 `src/content/experiences/2026/<author>/`**。选择一个英文昵称填写 `author`，只使用小写英文字母、数字或连字符，文件夹名直接复制这个昵称，大小写也要完全一致。可以使用 GitHub 用户名的小写形式；匿名投稿也可自选英文昵称，无需公开真实姓名。将 `index.md`、封面和正文插图一起放进这个文件夹。
-4. 在 `index.md` 中填写 `applicationYear: 2026`，确保与目录一致；院校使用全称，本科专业按实际情况填写。不要修改其他人的文章。
-5. 在自己 Fork 的分支中提交整个文件夹，再向原仓库的 `main` 分支[发起 PR](https://github.com/JNU-CS-BAOYAN/CS2026/compare)，说明署名和图片的公开授权。如需补充历史年份的经历，请放在对应年份目录，并使用相同的 `applicationYear`。
-
-不使用命令行也可以投稿：在自己 Fork 的分支中打开 `src/content/experiences/2026/`，选择 **Add file → Upload files**，将整个昵称文件夹拖进去。提交前检查文件路径，例如 `2026/xiaojiang/index.md`，不要把文章和图片直接放在年份目录下。操作可参考 [GitHub 上传文件说明](https://docs.github.com/en/repositories/working-with-files/managing-files/adding-a-file-to-a-repository)。
-
-创建 PR 时，目标仓库选择 `JNU-CS-BAOYAN/CS2026`，目标分支选择 `main`，来源选择自己的 Fork 和投稿分支。如果没有显示自己的分支，可点击 **compare across forks**；具体操作见 [从 Fork 创建 PR](https://docs.github.com/en/pull-requests/how-tos/create-pull-requests/creating-a-pull-request-from-a-fork)。
-
-投稿文件夹示例：
-
-```text
-src/content/experiences/2026/xiaojiang/
-├── index.md        # 必需：YAML 文件头和完整经验正文
-├── cover.jpg       # 可选：文章封面
-├── interview.png   # 可选：正文插图
-└── timeline.webp   # 可选：其他正文插图
-```
-
-对应的 YAML 必填字段示例：
-
-```yaml
-title: "我的保研经历"
-author: "xiaojiang"
-applicationYear: 2026
-```
-
-同一年内昵称不能与已有文章文件夹重名；如重名，请换一个昵称，并同时修改 `author` 和文件夹名。这项规则用于新投稿，历史文章保留原署名与地址。
-
-**一位投稿者提交一篇完整经验贴**，夏令营、预推免和其他申请经历在同一篇文章中分章节记录，不需要分成多篇。
-
-
-维护者审核并合并到 `main` 后，网站会自动检查和构建，通过后部署。提交 PR 或审核通过本身不会发布文章。
-
-## 封面与正文插图
-
-有封面时，在 YAML 中填写：
-
-```yaml
-cover: "./cover.jpg"
-```
-
-文件名和扩展名须与实际文件一致，也可以使用 PNG 或 WebP。封面建议选横向图片，16:9 比例更适合卡片展示。封面用于经验卡片和文章页顶部，**不会自动插入正文**。没有封面时，网站使用项目图片池，图片池见 `src/assets/cover-pool`。
-
-正文插图用相对路径引用同目录文件：
-
-```markdown
-![面试流程示意](./interview.png)
-![申请时间线](./timeline.webp)
-![其他图片](./other.jpg)
-```
-
-正文插图不作为卡片封面。无需修改 Astro 页面，也无需另外登记图片；文件随整个文件夹提交，路径及大小写对应即可。注意不要使用电脑上的绝对路径。
-
-## YAML 字段说明
-
-下载模板中已列出全部投稿字段并提供注释。以下三个字段必填，其他字段均可省略；收录时间由网站自动读取，不需要填写：
-
-| 字段 | 是否必填 | 用途 |
-| --- | --- | --- |
-| `title` | 必填 | 文章标题，在卡片和文章页显示 |
-| `author` | 必填 | 英文昵称，仅小写英文字母、数字或连字符，与文章文件夹名完全相同；匿名也可自选昵称 |
-| `applicationYear` | 必填 | 申请年份，决定年份归档，必须与目录一致；当前新稿为 2026，历史补稿按实际年份填写 |
-| `undergraduateMajor` | 选填 | 本科专业，在卡片、文章页和搜索结果显示 |
-| `institutions` | 选填 | 涉及院校的全称列表，以标签显示，并支持搜索，学校全称 |
-| `cover` | 选填 | 封面相对路径，省略时使用图片池 |
-| `sourceUrl` | 选填 | 原始出处的完整 URL，用于来源记录 |
-| `finalDestination` | 选填 | 最终去向，在文章页显示 |
-
-涉及院校填写文章申请表或单独院校章节涉及的院校全称，未入营、放弃或未参加的情况也可收录；仅在问答、补充、多校投递回顾或一般建议中提到的学校不加入标签。同校不同学院合并为一个标签，原文明确的校区或研究院保留区别，不推测未注明的院所。没有符合条件的院校时，可以不填写这个选填字段。最终去向填写最后的选择，两者分别记录。
-
-首页“最新收录”按文章首次进入 `main` 的 Git 提交时间排序，修改原文不会重新置顶。时间由网站自动处理，投稿者和维护者无需填写日期。院校标签统一使用全称，搜索仍支持常见简称。
-
-
-
-## 通过邮箱投稿
-
-不熟悉 GitHub 也没关系。按同一份 Markdown 模板填写 `index.md`，将它与封面、正文插图放在同一文件夹，打包后发送到 [eeecank@163.com](mailto:eeecank@163.com)。请在邮件中注明申请年份、署名及图片的公开授权；对 YAML 有疑问可在邮件中说明，由维护者协助核对。
-
-经验正文统一使用 Markdown。邮箱与 PR 两种渠道使用相同的文件结构和模板。
-
-## Markdown 写作说明
-
-Markdown 用纯文本中的符号表示标题、列表、链接和表格，文件后缀为 `.md`。你可以直接在模板里写作，再通过预览查看排版，不需要编写网页代码。
-
-### 编辑与预览
-
-推荐使用 [VS Code](https://code.visualstudio.com/docs/languages/markdown) 打开整个投稿文件夹，编辑其中的 `index.md`，保存为 UTF-8 编码。注意文件名不要变成 `index.md.txt`。
-
-在 VS Code 中按 `Ctrl+Shift+V`（macOS 为 `Cmd+Shift+V`）即可预览，也可以使用右上角的侧边预览按钮，边写边看。
-
-如果你的 VS Code 版本提供 **Markdown Editor（实验性）**，也可以通过 **Reopen Editor With（重新打开方式）** 切换到这个模式，在渲染后的内容中直接编辑。它是可选的编辑方式，普通文本编辑与预览同样可以完成投稿；可参考 [VS Code Markdown Editor 说明](https://code.visualstudio.com/updates/v1_131#_hybrid-markdown-editor-experimental)。
-
-预览后检查标题层级、表格和正文图片。文章顶部封面、作者信息和左侧目录由网站根据 YAML 与标题生成，编辑器预览中的外观可能不同。
-
-### 标题与段落
-
-文章主标题填写在 YAML 的 `title` 中，正文从二级标题 `##` 开始，院校详情使用三级标题 `###`。`#` 后面需要一个空格，标题前后留空行。
-
-```markdown
-## 夏令营经历
-
-这一段介绍我的夏令营准备过程。
-
-### 中山大学
-
-这一段记录该院校的考核经历。
-```
-
-两段正文之间留一个空行即可分段。编辑时换一行通常不会另起一个段落，建议用空行分段；确实需要在同一段内换行时，可在行末加两个空格再回车。
-
-### 强调、列表与引用
-
-```markdown
-**需要强调的内容**，以及 `文件名或短代码`。
-
-- 材料准备
-- 面试复盘
-
-1. 提前整理简历
-2. 按时间记录各院校的反馈
-
-> 这里可以放一句提醒或引用。
-```
-
-列表符号后留一个空格，列表与前后正文之间留空行。引用他人的内容时，请注明来源。
-
-### 链接与正文图片
-
-```markdown
-[项目仓库](https://github.com/JNU-CS-BAOYAN/CS2026)
-![面试流程示意](./interview.png)
-```
-
-链接使用 `[显示文字](地址)`，图片在前面多一个 `!`。正文图片应与 `index.md` 一起提交；`./interview.png` 表示同一文件夹中的图片，文件名、大小写和扩展名都要一致。图片说明写在方括号内，帮助读者了解图片内容。封面请按前面的[封面与正文插图](#封面与正文插图)说明，在 YAML 中单独指定。
-
-### 表格与院校详情跳转
-
-表格的第一行是表头，第二行的 `---` 是分隔行，后面每行填写一所院校；表格前后留空行，增删内容时保持每行列数一致。
-
-```markdown
-| 院校 | 入营情况 | 考核结果 | 详细经历 |
-| --- | --- | --- | --- |
-| 中山大学 | 入营 | 按实际情况填写 | [查看详情](#夏令营中山大学) |
-
-### 夏令营中山大学
-
-在这里补充详细经历。
-```
-
-`[查看详情](#夏令营中山大学)` 跳转到对应标题。修改院校标题后，也要修改表格链接；夏令营和预推免的标题保留阶段前缀，方便区分。同一标题不要重复使用。上面使用无空格、无标点的标题，便于保持跳转地址一致。
-
-如果单元格内需要写竖线 `|`，使用 `\|`；较长的面试问题和感受放在表格下方的详细经历中，表格只做汇总。更多表格写法可查看 [GitHub 表格说明](https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/organizing-information-with-tables)。
-
-### 代码块
-
-需要展示命令、代码或保持原样的文字时，用三条反引号包裹，并在开头注明语言。普通文字可以使用 `text`，例如：
-
-````markdown
-```text
-这里的文字会保持代码块格式。
-```
-````
-
-不要把整篇经验贴放进代码块，否则标题、表格和图片都会作为原始文字显示。仅展示写法的代码块不会加载其中的示例图片。
-
-更多常用语法可查看 [GitHub Markdown 写作说明](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax)。完成后保存 `index.md`，再按照上方 PR 或邮箱流程提交整个文件夹。
-
-## 投稿前请确认
-
-1. 必填字段已填写，YAML 使用空格缩进，年份与目录一致，英文昵称 `author` 与文件夹名完全相同，未填写的正文占位、示例表格行和不适用的章节已删除。
-2. 内容来自亲身经历，尽量清晰、有条理；允许匿名，不要求学号、精确排名或私人联系方式。
-3. 封面与正文插图路径正确，图片允许公开，私人信息已脱敏。
-4. 如另有简历、个人陈述等资料，希望公开时请在 PR 或邮件中单独说明，等待维护者审核。附件可放在个人文章文件夹的 `assets/` 子文件夹，文末会生成附件列表：图片点击查看原图，PDF 等文件提供下载；发布前由维护者核对文件和入口。经验正文仍只接受 `index.md`。
-5. 如希望加入贡献者列表，可同时提供 GitHub 个人主页链接，头像由维护者补充。
-
-模板中的 `<!-- ... -->` 是 HTML 注释，网页正文不会显示，填写提示可以保留，也可以删除。YAML 中以 `#` 开头的行也是注释，不会成为字段；需要启用某个选填字段时，删除该行开头的 `#` 并填写实际内容。若要展示注释中的图片示例，请保留图片语句、去掉外层 `<!--` 和 `-->`，再填写正确的图片路径。
-
-更正、撤下或其他问题可通过 [Issue](https://github.com/JNU-CS-BAOYAN/CS2026/issues) 或[邮箱](mailto:eeecank@163.com)联系。
+## ② 选择投稿方式
+
+<div class="submission-methods">
+<section class="resource-card submission-method-card">
+<h3>GitHub PR 投稿 <span class="submission-recommended">推荐</span></h3>
+<ol>
+<li>Fork 项目仓库，在自己的仓库中创建分支。</li>
+<li>在 <code>src/content/experiences/2026/</code> 添加个人稿件文件夹，包含文章、封面和插图。</li>
+<li>向原仓库的 <code>main</code> 分支发起 PR，等待维护者审核。</li>
+</ol>
+<p class="submission-method-note">当前新稿为 2026 年；详细文件结构见<a href="./markdown/#文件结构与投稿目录">写作指南</a>。</p>
+<p class="submission-method-actions"><a class="button" href="https://github.com/JNU-CS-BAOYAN/CS2026">打开 GitHub 仓库</a></p>
+</section>
+<section class="resource-card submission-method-card">
+<h3>邮箱投稿</h3>
+<ol>
+<li>完成 Markdown 稿件，填写文章信息。</li>
+<li>将文章、封面、插图和需要公开的附件一起打包。</li>
+<li>发送到下方投稿邮箱，注明申请年份和署名。</li>
+</ol>
+<p class="submission-method-note"><a href="mailto:eeecank@163.com" data-submission-email>eeecank@163.com</a>；格式有疑问时，我们可以协助补充。</p>
+<p class="submission-method-actions"><button class="button" type="button" data-copy-email hidden>复制投稿邮箱</button></p>
+<p class="submission-status" role="status" aria-live="polite" data-email-status></p>
+</section>
+</div>
+
+## ③ 投稿前确认
+
+- **内容：** 分享亲身经历，原则上一人一篇，章节结构不限，模板仅供参考。
+- **隐私：** 允许匿名；公开内容请先脱敏，公开 PR 中不要上传敏感材料。
+- **授权：** 确保文章、图片和附件可以公开，并在 PR 或邮件中说明。
+
+## ④ 审核与发布
+
+**提交稿件 → 维护者审核 → 合并至 main → 自动部署上线**
+
+维护者可能联系你补充或修改内容。审核完成并合并后，文章才会上线；更正、撤下或其他问题可通过 [Issue](https://github.com/JNU-CS-BAOYAN/CS2026/issues) 或[邮箱](mailto:eeecank@163.com)反馈。
