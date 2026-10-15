@@ -30,28 +30,7 @@ image: "./foreword-cover.jpg"
 
 感谢以下同学为项目贡献了宝贵的保研经验！
 
-<!-- ALL-CONTRIBUTORS-LIST:START -->
-<div class="contributors">
-  <a href="https://github.com/AGoodSleeper" aria-label="AGoodSleeper" title="AGoodSleeper"><span class="contributor-initial" aria-hidden="true">A</span><img src="https://github.com/AGoodSleeper.png?size=48" alt="AGoodSleeper" width="48" height="48" loading="lazy" onerror="this.remove()" /></a>
-  <a href="https://github.com/CaptainC0C0C0" aria-label="CaptainC0C0C0" title="CaptainC0C0C0"><span class="contributor-initial" aria-hidden="true">C</span><img src="https://github.com/CaptainC0C0C0.png?size=48" alt="CaptainC0C0C0" width="48" height="48" loading="lazy" onerror="this.remove()" /></a>
-  <a href="https://github.com/Eternitycjw" aria-label="Eternitycjw" title="Eternitycjw"><span class="contributor-initial" aria-hidden="true">E</span><img src="https://github.com/Eternitycjw.png?size=48" alt="Eternitycjw" width="48" height="48" loading="lazy" onerror="this.remove()" /></a>
-  <a href="https://github.com/Kikinvb" aria-label="Kikinvb" title="Kikinvb"><span class="contributor-initial" aria-hidden="true">K</span><img src="https://github.com/Kikinvb.png?size=48" alt="Kikinvb" width="48" height="48" loading="lazy" onerror="this.remove()" /></a>
-  <a href="https://github.com/Lomig24" aria-label="Lomig24" title="Lomig24"><span class="contributor-initial" aria-hidden="true">L</span><img src="https://github.com/Lomig24.png?size=48" alt="Lomig24" width="48" height="48" loading="lazy" onerror="this.remove()" /></a>
-  <a href="https://github.com/Lwh1019" aria-label="Lwh1019" title="Lwh1019"><span class="contributor-initial" aria-hidden="true">L</span><img src="https://github.com/Lwh1019.png?size=48" alt="Lwh1019" width="48" height="48" loading="lazy" onerror="this.remove()" /></a>
-  <a href="https://github.com/Pinrinko" aria-label="Pinrinko" title="Pinrinko"><span class="contributor-initial" aria-hidden="true">P</span><img src="https://github.com/Pinrinko.png?size=48" alt="Pinrinko" width="48" height="48" loading="lazy" onerror="this.remove()" /></a>
-  <a href="https://github.com/ccandtt" aria-label="ccandtt" title="ccandtt"><span class="contributor-initial" aria-hidden="true">C</span><img src="https://github.com/ccandtt.png?size=48" alt="ccandtt" width="48" height="48" loading="lazy" onerror="this.remove()" /></a>
-  <a href="https://github.com/feather1023" aria-label="feather1023" title="feather1023"><span class="contributor-initial" aria-hidden="true">F</span><img src="https://github.com/feather1023.png?size=48" alt="feather1023" width="48" height="48" loading="lazy" onerror="this.remove()" /></a>
-  <a href="https://github.com/haatohaaton" aria-label="haatohaaton" title="haatohaaton"><span class="contributor-initial" aria-hidden="true">H</span><img src="https://github.com/haatohaaton.png?size=48" alt="haatohaaton" width="48" height="48" loading="lazy" onerror="this.remove()" /></a>
-  <a href="https://github.com/hxy1073" aria-label="hxy1073" title="hxy1073"><span class="contributor-initial" aria-hidden="true">H</span><img src="https://github.com/hxy1073.png?size=48" alt="hxy1073" width="48" height="48" loading="lazy" onerror="this.remove()" /></a>
-  <a href="https://github.com/irokit" aria-label="irokit" title="irokit"><span class="contributor-initial" aria-hidden="true">I</span><img src="https://github.com/irokit.png?size=48" alt="irokit" width="48" height="48" loading="lazy" onerror="this.remove()" /></a>
-  <a href="https://github.com/kleinblue1" aria-label="kleinblue1" title="kleinblue1"><span class="contributor-initial" aria-hidden="true">K</span><img src="https://github.com/kleinblue1.png?size=48" alt="kleinblue1" width="48" height="48" loading="lazy" onerror="this.remove()" /></a>
-  <a href="https://github.com/kleinblue4" aria-label="kleinblue4" title="kleinblue4"><span class="contributor-initial" aria-hidden="true">K</span><img src="https://github.com/kleinblue4.png?size=48" alt="kleinblue4" width="48" height="48" loading="lazy" onerror="this.remove()" /></a>
-  <a href="https://github.com/levollerei" aria-label="levollerei" title="levollerei"><span class="contributor-initial" aria-hidden="true">L</span><img src="https://github.com/levollerei.png?size=48" alt="levollerei" width="48" height="48" loading="lazy" onerror="this.remove()" /></a>
-  <a href="https://github.com/pingpighsy" aria-label="pingpighsy" title="pingpighsy"><span class="contributor-initial" aria-hidden="true">P</span><img src="https://github.com/pingpighsy.png?size=48" alt="pingpighsy" width="48" height="48" loading="lazy" onerror="this.remove()" /></a>
-  <a href="https://github.com/wjun59" aria-label="wjun59" title="wjun59"><span class="contributor-initial" aria-hidden="true">W</span><img src="https://github.com/wjun59.png?size=48" alt="wjun59" width="48" height="48" loading="lazy" onerror="this.remove()" /></a>
-  <a href="https://github.com/xiao20040105" aria-label="xiao20040105" title="xiao20040105"><span class="contributor-initial" aria-hidden="true">X</span><img src="https://github.com/xiao20040105.png?size=48" alt="xiao20040105" width="48" height="48" loading="lazy" onerror="this.remove()" /></a>
-</div>
-<!-- ALL-CONTRIBUTORS-LIST:END -->
+<!-- CONTRIBUTORS -->
 
 
 ## 🎉 感谢

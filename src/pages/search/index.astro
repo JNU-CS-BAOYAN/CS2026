@@ -5,6 +5,7 @@ import { institutionDisplayName, institutionSearchText } from '../../lib/institu
 import { buildSearchIndex, type SearchSource } from '../../lib/search-index';
 import SearchBox from '../../components/SearchBox.astro';
 import SiteLayout from '../../layouts/SiteLayout.astro';
+import { contributorSearchText } from '../../lib/contributors.mjs';
 
 const [experiences, pages] = await Promise.all([getExperiences(), getCollection('pages')]);
 const pageRoutes = [
@@ -30,7 +31,7 @@ for (const route of pageRoutes) {
   sources.push({
     kind: 'page', section: route.section, title: page.data.heading ?? page.data.title,
     author: '', year: null, undergraduateMajor: '', institutions: [], institutionKeywords: '',
-    body: page.body ?? '', extraText: [page.data.title, page.data.intro, page.data.description].filter(Boolean).join(' '),
+    body: page.body ?? '', extraText: [page.data.title, page.data.intro, page.data.description, route.id === 'foreword' ? contributorSearchText : ''].filter(Boolean).join(' '),
     path: sitePath(route.path),
   });
 }

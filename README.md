@@ -83,6 +83,8 @@ CI 使用 `fetch-depth: 0` 拉取完整历史。浅克隆需要先运行 `git fe
 
 页面 YAML 的 `title` 为页面名称，`heading` 可覆盖页面上的主标题，`intro` 是页首引导文字，`description` 为页面描述；正文使用 Markdown。`home.md` 的正文是首页介绍。“启航絮语”的栏目名自动读取 `foreword.md` 的标题。
 
+启航絮语的贡献者名单单独维护在 `src/data/contributors.json`，添加 GitHub 用户名即可自动生成头像和主页链接，也支持只填昵称。具体格式见 [贡献者维护说明](src/data/README.md)；`foreword.md` 中的 `<!-- CONTRIBUTORS -->` 控制展示位置。
+
 Astro 负责布局、经验列表、分页、目录、搜索和交互。投稿页 `/submit/` 只维护准备稿件、PR/邮箱渠道、投稿须知和审核发布流程；技术说明独立在 `/submit/markdown/`，正文由 `markdown-guide.md` 维护，不加入顶部导航。投稿下载控件在 `src/components/SubmissionTools.astro`，两页共用同一份模板，完整预览/复制仅在指南页显示；组件也负责邮箱复制及失败回退，邮箱地址仍在 `submit.md` 中维护。搜索、404 等功能提示仍由对应组件或页面维护。
 
 “启航絮语”以首页横向卡片展示，点击进入独立文章页；经验列表和年份列表均提供页码导航。投稿正文模板（与网站的投稿说明不同）位于：
