@@ -25,7 +25,8 @@ npm run preview
 - `check:content`：检查目录名/英文署名、年份、元数据、封面及旧跳转地址冲突；仅固定的历史文章豁免新署名规则。
 - `check`：运行 Astro 类型和内容集合检查。
 - `test`：运行内容校验、历史链接和 Git 收录时间的回归测试。
-- `build`：生成静态站点。
+- `build`：先同步两个仓库的贡献者，再生成静态站点；API 不可用时沿用本地缓存或备用名单。
+- `sync:contributors`：单独刷新贡献者缓存，供本地预览使用。
 - `check:links`：构建完成后检查站内页面、锚点、图片、脚本、样式及附件路径；不联网检查外部链接。
 - `preview`：预览构建产物。
 
@@ -83,7 +84,7 @@ CI 使用 `fetch-depth: 0` 拉取完整历史。浅克隆需要先运行 `git fe
 
 页面 YAML 的 `title` 为页面名称，`heading` 可覆盖页面上的主标题，`intro` 是页首引导文字，`description` 为页面描述；正文使用 Markdown。`home.md` 的正文是首页介绍。“启航絮语”的栏目名自动读取 `foreword.md` 的标题。
 
-启航絮语的贡献者名单单独维护在 `src/data/contributors.json`，添加 GitHub 用户名即可自动生成头像和主页链接，也支持只填昵称。具体格式见 [贡献者维护说明](src/data/README.md)；`foreword.md` 中的 `<!-- CONTRIBUTORS -->` 控制展示位置。
+启航絮语的贡献者自动汇总当前网站 `JNU-CS-BAOYAN/CS2026` 和原内容仓库 `kleinblue4/JNU-CS-BAOYAN`。邮箱投稿者等额外贡献者仍在 `src/data/contributors.json` 手动补充，支持 GitHub 用户名或昵称；账号去重，手动昵称优先。每次 `npm run build` 同步，部署工作流还会每日北京时间 10:17 自动构建发布一次（GitHub 定时任务可能延迟）；失败时沿用各仓库上次成功的名单。具体格式与回退机制见 [贡献者维护说明](src/data/README.md)；`foreword.md` 中的 `<!-- CONTRIBUTORS -->` 控制展示位置。
 
 Astro 负责布局、经验列表、分页、目录、搜索和交互。投稿页 `/submit/` 只维护准备稿件、PR/邮箱渠道、投稿须知和审核发布流程；技术说明独立在 `/submit/markdown/`，正文由 `markdown-guide.md` 维护，不加入顶部导航。投稿下载控件在 `src/components/SubmissionTools.astro`，两页共用同一份模板，完整预览/复制仅在指南页显示；组件也负责邮箱复制及失败回退，邮箱地址仍在 `submit.md` 中维护。搜索、404 等功能提示仍由对应组件或页面维护。
 

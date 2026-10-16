@@ -4,6 +4,9 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+  schedule:
+    # Every day at 10:17 Asia/Shanghai (02:17 UTC).
+    - cron: '17 2 * * *'
 
 permissions:
   contents: read
@@ -35,6 +38,14 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Restore last contributor snapshot
+        uses: actions/cache@v4
+        with:
+          path: .cache/contributors.json
+          key: contributors-${{ github.repository }}-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: |
+            contributors-${{ github.repository }}-
+
       - name: Check submission structure and metadata
         run: npm run check:content
 
@@ -46,6 +57,8 @@ jobs:
 
       - name: Build
         run: npm run build
+        env:
+          CONTRIBUTORS_TOKEN: ${{ github.token }}
 
       - name: Check built pages and local resources
         run: npm run check:links
