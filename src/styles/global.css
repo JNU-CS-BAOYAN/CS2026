@@ -435,6 +435,7 @@ a.article-neighbor-link:hover { border-color: var(--accent); color: var(--accent
 .article-end-nav { display: flex; justify-content: space-between; gap: 1rem; max-width: var(--prose-width); margin: 1rem auto 0; }
 .prose h1 { margin-top: 0; font-size: clamp(1.8rem, 3.5vw, 2.8rem); }
 .prose img { display: block; width: min(100%, var(--prose-width)); height: auto; margin: 1.5rem auto; object-fit: contain; }
+.prose img.markdown-image-sized { width: min(100%, var(--markdown-image-width)); height: auto; }
 .prose .contributors { display: flex; flex-wrap: wrap; gap: .75rem; align-items: center; }
 .prose .contributors a, .prose .contributors .contributor-avatar { display: inline-grid; place-items: center; position: relative; width: 48px; height: 48px; margin: 0; border-radius: 50%; overflow: hidden; background: var(--surface-soft); color: var(--accent-deep); text-decoration: none; }
 .prose .contributor-initial { font-weight: 700; }

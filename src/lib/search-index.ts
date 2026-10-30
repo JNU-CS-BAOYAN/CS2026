@@ -3,6 +3,7 @@ import { createSatteriMarkdownProcessor } from '@astrojs/markdown-satteri';
 import { unescape } from 'html-escaper';
 import { ELEMENT_NODE, TEXT_NODE, parse, type Node } from 'ultrahtml';
 import type { SearchRecord } from './search';
+import { obsidianImageSizes } from './obsidian-image-sizes.mjs';
 
 const blocks = new Set(['p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'div', 'li', 'td', 'th', 'pre', 'blockquote', 'br', 'hr']);
 
@@ -26,7 +27,7 @@ export interface SearchSource extends Omit<SearchRecord, 'text'> {
 }
 
 export async function buildSearchIndex(sources: SearchSource[]): Promise<SearchRecord[]> {
-  const renderer = await createSatteriMarkdownProcessor({ syntaxHighlight: false });
+  const renderer = await createSatteriMarkdownProcessor({ syntaxHighlight: false, hastPlugins: [obsidianImageSizes] });
   return Promise.all(sources.map(async ({ body, extraText = '', ...record }) => {
     const { code } = await renderer.render(body);
     return { ...record, text: `${extraText} ${visibleHtmlText(code)}`.replace(/\s+/g, ' ').trim() };

@@ -6,6 +6,7 @@ import { defineConfig } from 'astro/config';
 import { satteri, satteriHeadingIdsPlugin } from '@astrojs/markdown-satteri';
 import { legacyArticleLinks } from './src/lib/legacy-article-links.mjs';
 import { forewordContributors } from './src/lib/contributors.mjs';
+import { obsidianImageSizes } from './src/lib/obsidian-image-sizes.mjs';
 
 // Recolor only Shiki's dark variables; light tokens and token formatting stay intact.
 const warmCodePalette = new Map([
@@ -34,7 +35,7 @@ export default defineConfig({
   // GitHub Pages needs the repository prefix; local dev should stay at `/`.
   base: process.env.NODE_ENV === 'development' ? '/' : '/CS2026',
   markdown: {
-    processor: satteri({ hastPlugins: [satteriHeadingIdsPlugin(), legacyArticleLinks, forewordContributors] }),
+    processor: satteri({ hastPlugins: [satteriHeadingIdsPlugin(), legacyArticleLinks, obsidianImageSizes, forewordContributors] }),
     shikiConfig: {
       themes: { light: 'github-light', dark: 'github-dark' },
       transformers: [{ name: 'warm-charcoal', pre: warmCodeColors, span: warmCodeColors }],
